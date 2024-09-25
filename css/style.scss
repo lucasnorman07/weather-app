@@ -3,16 +3,34 @@
     padding: 0;
 }
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@import "current_weather";
+
+$default-spacing: 1.3rem;
+$default-border-radius: 1rem;
+
 #weather-grid {
-    background-color: red;
-    width: 85rem;
-    height: 50rem;
+    color: white;
+    width: 68rem;
+    /*85*/
+    height: 40rem;
+    /*50*/
     margin: 50dvh 50dvw;
+    margin-bottom: 0;
     translate: -50% -50%;
     display: grid;
-    gap: 2rem;
-    grid-template-rows: repeat(4, 1fr) 0.2fr;
-    grid-template-columns: repeat(6, 1fr) 0.3fr;
+    gap: 1rem;
+    grid-template-rows: 1fr 1fr 1.5fr 1fr;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+#weather-grid > section {
+    background-color: blue;
+    padding: $default-spacing;
+    border-radius: $default-border-radius;
 }
 
 #current-weather-card {
@@ -41,8 +59,4 @@
 
 #precipitation-card {
     grid-area: 4 / 5 / span 2 / span 3;
-}
-
-#weather-grid > section {
-    background-color: blue;
 }

@@ -117,23 +117,23 @@
             };
         });
     }
-    const weatherData = await getWeatherData(
-        58,
-        13,
-        Intl.DateTimeFormat().resolvedOptions().timeZone
-    );
-    const airQualityData = await getAirQualityData(
-        58,
-        13,
-        Intl.DateTimeFormat().resolvedOptions().timeZone
-    );
-    console.log({ airQualityData });
-    console.log("Air quality", parseAirQuality(airQualityData));
-    console.log({ weatherData });
-    console.log("Current", parseCurrentWeather(weatherData));
-    console.log("Conditions", parseWeatherConditions(weatherData));
-    console.log("Hourly", parseHourlyWeather(weatherData));
-    console.log("Daily", parseDailyWeather(weatherData));
-    console.log("Night day", parseGetDayNightData(weatherData));
-    console.log("Precip", parsePrecipitation(weatherData));
+    // const weatherData = await getWeatherData(
+    //     58,
+    //     13,
+    //     Intl.DateTimeFormat().resolvedOptions().timeZone
+    // );
+    // const airQualityData = await getAirQualityData(
+    //     58,
+    //     13,
+    //     Intl.DateTimeFormat().resolvedOptions().timeZone
+    // );
+    // console.log({ airQualityData });
+    // console.log("Air quality", parseAirQuality(airQualityData));
+    // console.log({ weatherData });
+    // console.log("Current", parseCurrentWeather(weatherData));
+    // console.log("Conditions", parseWeatherConditions(weatherData));
+    // console.log("Hourly", parseHourlyWeather(weatherData));
+    // console.log("Daily", parseDailyWeather(weatherData));
+    // console.log("Night day", parseGetDayNightData(weatherData));
+    // console.log("Precip", parsePrecipitation(weatherData));
 })();

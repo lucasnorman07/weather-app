@@ -1,0 +1,33 @@
+#current-weather-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    #current-weather-and-temperature {
+        display: flex;
+        justify-content: space-between;
+
+        img {
+            width: 40%;
+            align-self: start;
+        }
+
+        & > div {
+            align-content: center;
+
+            #current-temperature {
+                font-size: 7rem;
+                line-height: 5.5rem;
+                font-weight: bold;
+            }
+            #current-weather-text {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    #highest-lowest-and-apparent-temperature {
+        display: flex;
+        justify-content: space-between;
+    }
+}

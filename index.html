@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Weather app</title>
         <script src="main.js"></script>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
         <header>
@@ -13,7 +13,24 @@
         </header>
         <main>
             <div id="weather-grid">
-                <section id="current-weather-card"></section>
+                <section id="current-weather-card">
+                    <div>
+                        <h2>Current Weather</h2>
+                        <p>18:25</p>
+                    </div>
+                    <div id="current-weather-and-temperature">
+                        <img src="temp/tempWeatherIcon.png" alt="Current weather" />
+                        <div>
+                            <p id="current-temperature">22</p>
+                            <p id="current-weather-text">Heavy rain</p>
+                        </div>
+                    </div>
+                    <div id="highest-lowest-and-apparent-temperature">
+                        <p>H:24°</p>
+                        <p>L:8°</p>
+                        <p>Feels like: 23°</p>
+                    </div>
+                </section>
                 <section id="weather-conditions-card"></section>
                 <section id="hourly-weather-card"></section>
                 <section id="daily-weather-card"></section>
@@ -22,6 +39,6 @@
                 <section id="precipitation-card"></section>
             </div>
         </main>
-        <footer></footer>
+        <footer>©️ Lucas Norman 2024. All rights reserved.</footer>
     </body>
 </html>

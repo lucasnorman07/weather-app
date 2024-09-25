@@ -3,16 +3,58 @@
   padding: 0;
 }
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#current-weather-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#current-weather-card #current-weather-and-temperature {
+  display: flex;
+  justify-content: space-between;
+}
+#current-weather-card #current-weather-and-temperature img {
+  width: 40%;
+  align-self: start;
+}
+#current-weather-card #current-weather-and-temperature > div {
+  align-content: center;
+}
+#current-weather-card #current-weather-and-temperature > div #current-temperature {
+  font-size: 7rem;
+  line-height: 5.5rem;
+  font-weight: bold;
+}
+#current-weather-card #current-weather-and-temperature > div #current-weather-text {
+  font-size: 1.2rem;
+}
+#current-weather-card #highest-lowest-and-apparent-temperature {
+  display: flex;
+  justify-content: space-between;
+}
+
 #weather-grid {
-  background-color: red;
-  width: 85rem;
-  height: 50rem;
+  color: white;
+  width: 68rem;
+  /*85*/
+  height: 40rem;
+  /*50*/
   margin: 50dvh 50dvw;
+  margin-bottom: 0;
   translate: -50% -50%;
   display: grid;
-  gap: 2rem;
-  grid-template-rows: repeat(4, 1fr) 0.2fr;
-  grid-template-columns: repeat(6, 1fr) 0.3fr;
+  gap: 1rem;
+  grid-template-rows: 1fr 1fr 1.5fr 1fr;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+#weather-grid > section {
+  background-color: blue;
+  padding: 1.3rem;
+  border-radius: 1rem;
 }
 
 #current-weather-card {
@@ -41,8 +83,4 @@
 
 #precipitation-card {
   grid-area: 4/5/span 2/span 3;
-}
-
-#weather-grid > section {
-  background-color: blue;
 }/*# sourceMappingURL=style.css.map */
