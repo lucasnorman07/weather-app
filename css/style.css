@@ -66,10 +66,6 @@ body {
   white-space: nowrap;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
 #hourly-weather-card {
   display: flex;
   flex-direction: column;
@@ -78,6 +74,9 @@ body {
 #hourly-weather-card #hourly-weather-items {
   display: flex;
   overflow-x: auto;
+}
+#hourly-weather-card #hourly-weather-items::-webkit-scrollbar {
+  display: none;
 }
 #hourly-weather-card #hourly-weather-items .hourly-weather-item {
   text-align: center;
@@ -104,6 +103,35 @@ body {
   font-size: 1.2rem;
 }
 
+#daily-weather-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#daily-weather-card #daily-weather-items {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+#daily-weather-card #daily-weather-items::-webkit-scrollbar {
+  display: none;
+}
+#daily-weather-card #daily-weather-items .daily-weather-item {
+  display: flex;
+  padding: 0.8rem 0;
+  justify-content: space-between;
+  align-items: center;
+}
+#daily-weather-card #daily-weather-items .daily-weather-item:last-child {
+  padding-bottom: 0;
+}
+#daily-weather-card #daily-weather-items .daily-weather-item .daily-weather-item-day {
+  flex-basis: 5rem;
+}
+#daily-weather-card #daily-weather-items .daily-weather-item img {
+  height: 1.5rem;
+}
+
 #weather-grid {
   color: white;
   width: 68rem;
@@ -121,7 +149,7 @@ body {
 
 #weather-grid > section {
   background-color: blue;
-  padding: 1.3rem;
+  padding: 1.5rem;
   border-radius: 1rem;
 }
 

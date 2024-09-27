@@ -7,12 +7,14 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+$default-spacing: 1.5rem;
+$default-border-radius: 1rem;
+$default-divider-width: 0.05rem;
+
 @import "current_weather";
 @import "weather_conditions";
 @import "hourly_weather";
-
-$default-spacing: 1.3rem;
-$default-border-radius: 1rem;
+@import "daily_weather";
 
 #weather-grid {
     color: white;

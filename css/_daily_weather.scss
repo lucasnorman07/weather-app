@@ -1,0 +1,35 @@
+#daily-weather-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    #daily-weather-items {
+        display: flex;
+        flex-direction: column;
+
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .daily-weather-item {
+            display: flex;
+            padding: 0.8rem 0;
+            justify-content: space-between;
+            align-items: center;
+
+            &:last-child {
+                padding-bottom: 0;
+            }
+
+            .daily-weather-item-day {
+                flex-basis: 5rem;
+            }
+
+            img {
+                height: 1.5rem;
+            }
+        }
+    }
+}

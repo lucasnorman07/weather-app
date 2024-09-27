@@ -1,7 +1,3 @@
-::-webkit-scrollbar {
-    display: none;
-}
-
 #hourly-weather-card {
     display: flex;
     flex-direction: column;
@@ -11,10 +7,14 @@
         display: flex;
         overflow-x: auto;
 
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
         .hourly-weather-item {
             text-align: center;
             padding: 0 1rem;
-            border-right: 0.05rem solid white;
+            border-right: $default-divider-width solid white;
 
             &:first-child {
                 padding-left: 0;
