@@ -8,6 +8,8 @@ body {
 }
 
 @import "current_weather";
+@import "weather_conditions";
+@import "hourly_weather";
 
 $default-spacing: 1.3rem;
 $default-border-radius: 1rem;
