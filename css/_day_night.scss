@@ -1,0 +1,24 @@
+#day-night-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    #day-night-canvas {
+        // Take up any available space
+        height: 0;
+        flex-grow: 1;
+    }
+
+    p {
+        #sunrise {
+            position: absolute;
+            bottom: $default-spacing;
+            left: $default-spacing + 2.5rem;
+        }
+        #sunset {
+            position: absolute;
+            bottom: $default-spacing;
+            right: $default-spacing + 2.5rem;
+        }
+    }
+}

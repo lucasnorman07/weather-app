@@ -6,26 +6,33 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(#4472E8, #264082);
+    height: 100dvh;
 }
 
 $default-spacing: 1.5rem;
 $default-border-radius: 1rem;
 $default-divider-width: 0.05rem;
 
+$heading-font-size: 1.2rem;
+$default-font-size: 1.1rem;
+
 @import "current_weather";
 @import "weather_conditions";
 @import "hourly_weather";
 @import "daily_weather";
+@import "day_night";
 
 #weather-grid {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
     color: white;
     width: 68rem;
     /*85*/
     height: 40rem;
     /*50*/
-    margin: 50dvh 50dvw;
     margin-bottom: 0;
-    translate: -50% -50%;
     display: grid;
     gap: 1rem;
     grid-template-rows: 1fr 1fr 1.5fr 1fr;
@@ -34,8 +41,16 @@ $default-divider-width: 0.05rem;
 
 #weather-grid > section {
     background-color: rgba(217, 217, 217, 0.2);
-    padding: $default-spacing;
+    padding: $default-spacing * 0.8 $default-spacing;
     border-radius: $default-border-radius;
+
+    h2 {
+        font-size: $heading-font-size;
+    }
+
+    p {
+        font-size: $default-font-size;
+    }
 }
 
 #current-weather-card {

@@ -7,6 +7,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(#4472E8, #264082);
+  height: 100dvh;
 }
 
 #current-weather-card {
@@ -92,7 +93,6 @@ body {
   padding-right: 0;
 }
 #hourly-weather-card #hourly-weather-items .hourly-weather-item .hourly-weather-item-time {
-  font-size: 1.1rem;
   opacity: 0.5;
 }
 #hourly-weather-card #hourly-weather-items .hourly-weather-item img {
@@ -133,15 +133,37 @@ body {
   height: 1.5rem;
 }
 
+#day-night-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+#day-night-card #day-night-canvas {
+  height: 0;
+  flex-grow: 1;
+}
+#day-night-card p #sunrise {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 4rem;
+}
+#day-night-card p #sunset {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 4rem;
+}
+
 #weather-grid {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
   color: white;
   width: 68rem;
   /*85*/
   height: 40rem;
   /*50*/
-  margin: 50dvh 50dvw;
   margin-bottom: 0;
-  translate: -50% -50%;
   display: grid;
   gap: 1rem;
   grid-template-rows: 1fr 1fr 1.5fr 1fr;
@@ -150,8 +172,14 @@ body {
 
 #weather-grid > section {
   background-color: rgba(217, 217, 217, 0.2);
-  padding: 1.5rem;
+  padding: 1.2rem 1.5rem;
   border-radius: 1rem;
+}
+#weather-grid > section h2 {
+  font-size: 1.2rem;
+}
+#weather-grid > section p {
+  font-size: 1.1rem;
 }
 
 #current-weather-card {

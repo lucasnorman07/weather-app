@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Weather app</title>
-        <script src="main.js"></script>
+        <script defer src="js/main.js"></script>
+        <script defer src="js/day_night.js"></script>
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
@@ -274,11 +275,17 @@
                         </div>
                     </div>
                 </section>
-                <section id="day-night-card"></section>
+                <section id="day-night-card">
+                    <h2>Time of day</h2>
+                    <canvas id="day-night-canvas"></canvas>
+                    <p>
+                        <span id="sunrise">06:20</span>
+                        <span id="sunset">22:00</span>
+                    </p>
+                </section>
                 <section id="air-quality-card"></section>
                 <section id="precipitation-card"></section>
             </div>
         </main>
-        <footer>©️ Lucas Norman 2024. All rights reserved.</footer>
     </body>
 </html>

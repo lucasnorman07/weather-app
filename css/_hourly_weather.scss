@@ -26,7 +26,6 @@
             }
 
             .hourly-weather-item-time {
-                font-size: 1.1rem;
                 opacity: 0.5;
             }
 
@@ -37,7 +36,7 @@
 
             .hourly-weather-item-temperature {
                 font-weight: bold;
-                font-size: 1.2rem;
+                font-size: $heading-font-size;
             }
         }
     }
