@@ -28,20 +28,12 @@ const ellipseHeight = canvas.height - inset.y;
 
 function render(sunPosition) {
     ctx.lineWidth = lineWidth;
-    ctx.strokeStyle = "yellow";
+    ctx.strokeStyle = "rgb(255, 217, 0)";
     ctx.fillStyle = "orange";
 
     // Draw the arc
     ctx.beginPath();
     ctx.ellipse(canvas.width / 2, canvas.height, ellipseWidth / 2, ellipseHeight, 0, Math.PI, 0);
-    ctx.stroke();
-
-    // Draw the line endings of the arc
-    ctx.beginPath();
-    ctx.moveTo(0, canvas.height - lineWidth / 2);
-    ctx.lineTo(inset.x * 2, canvas.height - lineWidth / 2);
-    ctx.moveTo(canvas.width, canvas.height - lineWidth / 2);
-    ctx.lineTo(canvas.width - inset.x * 2, canvas.height - lineWidth / 2);
     ctx.stroke();
 
     // Draw the sun

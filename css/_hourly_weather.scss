@@ -1,7 +1,5 @@
 #hourly-weather-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @extend .vertical-space-between;
 
     #hourly-weather-items {
         display: flex;

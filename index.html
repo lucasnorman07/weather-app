@@ -283,7 +283,25 @@
                         <span id="sunset">22:00</span>
                     </p>
                 </section>
-                <section id="air-quality-card"></section>
+                <section id="air-quality-card">
+                    <div id="aqi-wrapper">
+                        <h2>Air quality</h2>
+                        <div id="air-quality-meter-wrapper">
+                            <p id="aqi-indicator">Good (10)</p>
+                            <progress id="air-quality-meter" value="70" max="100"></progress>
+                        </div>
+                    </div>
+                    <div id="air-quality-divider"></div>
+                    <div id="pollen-wrapper">
+                        <h2>Pollen</h2>
+                        <ul>
+                            <li>Grass: Low</li>
+                            <li>Birch: High</li>
+                            <li>Ragweed: Low</li>
+                            <li>Alder: None</li>
+                        </ul>
+                    </div>
+                </section>
                 <section id="precipitation-card"></section>
             </div>
         </main>

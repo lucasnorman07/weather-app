@@ -1,7 +1,5 @@
 #current-weather-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @extend .vertical-space-between;
 
     #current-weather-and-temperature {
         display: flex;
