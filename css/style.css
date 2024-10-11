@@ -178,9 +178,14 @@ body {
   left: 50%;
   top: 70%;
   translate: -50% -50%;
-  background: green;
   width: 100%;
   height: 0.7rem;
+  background: green;
+}
+#air-quality-card #aqi-wrapper #air-quality-meter::-webkit-progress-bar {
+  border-radius: 1rem;
+  background-color: lightgray;
+  overflow: hidden;
 }
 #air-quality-card #air-quality-divider {
   width: 0.05rem;
