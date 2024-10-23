@@ -1,0 +1,17 @@
+#precipitation-card {
+    @extend .vertical-space-between;
+
+    #precipitation-canvas-wrapper {
+        overflow: auto hidden;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        #precipitation-canvas {
+            // background: linear-gradient(to right, red, yellow, green, orange, purple, blue);
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

@@ -4,8 +4,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Weather app</title>
-        <script defer src="js/main.js"></script>
-        <script defer src="js/day_night.js"></script>
+        <script type="module" src="js/main.js"></script>
+        <script type="module" src="js/day_night.js"></script>
+        <script type="module" src="js/precipitation.js"></script>
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
@@ -224,49 +225,49 @@
                             <p>H:21°</p>
                             <p>L:7°</p>
                         </div>
-                        <hr />
+                        <!-- <hr /> -->
                         <div class="daily-weather-item">
                             <p class="daily-weather-item-day">Today</p>
                             <img src="temp/tempWeatherIcon.png" alt="Current weather" />
                             <p>H:21°</p>
                             <p>L:7°</p>
                         </div>
-                        <hr />
+                        <!-- <hr /> -->
                         <div class="daily-weather-item">
                             <p class="daily-weather-item-day">Monday</p>
                             <img src="temp/tempWeatherIcon.png" alt="Current weather" />
                             <p>H:21°</p>
                             <p>L:7°</p>
                         </div>
-                        <hr />
+                        <!-- <hr /> -->
                         <div class="daily-weather-item">
                             <p class="daily-weather-item-day">Tuesday</p>
                             <img src="temp/tempWeatherIcon.png" alt="Current weather" />
                             <p>H:21°</p>
                             <p>L:7°</p>
                         </div>
-                        <hr />
+                        <!-- <hr /> -->
                         <div class="daily-weather-item">
                             <p class="daily-weather-item-day">Wednesday</p>
                             <img src="temp/tempWeatherIcon.png" alt="Current weather" />
                             <p>H:21°</p>
                             <p>L:7°</p>
                         </div>
-                        <hr />
+                        <!-- <hr /> -->
                         <div class="daily-weather-item">
                             <p class="daily-weather-item-day">Thursday</p>
                             <img src="temp/tempWeatherIcon.png" alt="Current weather" />
                             <p>H:21°</p>
                             <p>L:7°</p>
                         </div>
-                        <hr />
+                        <!-- <hr /> -->
                         <div class="daily-weather-item">
                             <p class="daily-weather-item-day">Friday</p>
                             <img src="temp/tempWeatherIcon.png" alt="Current weather" />
                             <p>H:21°</p>
                             <p>L:7°</p>
                         </div>
-                        <hr />
+                        <!-- <hr /> -->
                         <div class="daily-weather-item">
                             <p class="daily-weather-item-day">Saturday</p>
                             <img src="temp/tempWeatherIcon.png" alt="Current weather" />
@@ -302,7 +303,12 @@
                         </ul>
                     </div>
                 </section>
-                <section id="precipitation-card"></section>
+                <section id="precipitation-card">
+                    <h2>Precipitation</h2>
+                    <div id="precipitation-canvas-wrapper">
+                        <canvas id="precipitation-canvas"></canvas>
+                    </div>
+                </section>
             </div>
         </main>
     </body>

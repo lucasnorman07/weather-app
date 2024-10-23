@@ -15,12 +15,14 @@
 
         .daily-weather-item {
             display: flex;
-            padding: 0.8rem 0;
+            padding: $default-spacing * 0.55 0;
             justify-content: space-between;
             align-items: center;
+            border-bottom: $default-divider-width solid white;
 
             &:last-child {
                 padding-bottom: 0;
+                border-bottom: 0;
             }
 
             .daily-weather-item-day {
