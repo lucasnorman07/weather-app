@@ -1,16 +1,17 @@
 // TODO: use JQuery
-const canvas = document.getElementById("day-night-canvas");
-const ctx = canvas.getContext("2d");
+const canvas = $("#day-night-canvas");
+const ctx = canvas.get(0).getContext("2d");
 
+let width, height;
 const resize = () => {
-    const { width, height } = canvas.getBoundingClientRect();
-    canvas.width = width;
-    canvas.height = height;
+    [width, height] = [canvas.width(), canvas.height()];
+    canvas.prop("width", width);
+    canvas.prop("height", height);
 };
 resize();
 
 // In case the canvas is resized, then update the canvas width and height
-canvas.addEventListener("resize", resize);
+canvas.on("resize", resize);
 
 // Helper function to get the x and y positions (from -1 to 1) from an angle (0 = left, 180 = right)
 function getCirclePosition(angle) {
@@ -23,8 +24,8 @@ function getCirclePosition(angle) {
 const lineWidth = 3;
 const inset = { x: 13, y: 12 };
 const sunRadius = 12;
-const ellipseWidth = canvas.width - inset.x * 2;
-const ellipseHeight = canvas.height - inset.y;
+const ellipseWidth = width - inset.x * 2;
+const ellipseHeight = height - inset.y;
 
 function render(sunPosition) {
     ctx.lineWidth = lineWidth;
@@ -33,7 +34,7 @@ function render(sunPosition) {
 
     // Draw the arc
     ctx.beginPath();
-    ctx.ellipse(canvas.width / 2, canvas.height, ellipseWidth / 2, ellipseHeight, 0, Math.PI, 0);
+    ctx.ellipse(width / 2, height, ellipseWidth / 2, ellipseHeight, 0, Math.PI, 0);
     ctx.stroke();
 
     // Draw the sun
@@ -55,6 +56,6 @@ let velocity = 2;
 setInterval(() => {
     position += velocity;
     if (position <= 0 || position >= 180) velocity *= -1;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, width, height);
     render(position);
 }, 1000 / 60);
