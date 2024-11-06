@@ -1,4 +1,3 @@
-// TODO: use JQuery
 const canvasWrapper = $("#precipitation-canvas-wrapper");
 const canvas = $("#precipitation-canvas");
 const ctx = canvas.get(0).getContext("2d");
@@ -23,29 +22,32 @@ const data = [
 
 const verticalLabels = ["100%", "50%", "0%"];
 
-const spacing = 1.5;
-const lineWidth = 0.5;
-const textColor = "white";
-const opaqueTextColor = "rgba(255, 255, 255, 0.5)";
-const font = "1rem Arial";
-const verticalLabelsFont = "0.95rem Arial";
+const SPACING = 1.5;
+const LINE_WIDTH = 0.5;
+const TEXT_COLOR = "white";
+const OPAQUE_TEXT_COLOR = "rgba(255, 255, 255, 0.5)";
+const FONT = "1rem Arial";
+const TEXT_BASELINE = "bottom";
+const VERTICAL_LABELS_FONT = "0.95rem Arial";
 
-// Set the font to be able to define the width and height of the timestamps and the size of the shift (the width of the text along the y-axis)
-ctx.font = font;
+// Set the FONT to be able to define the size of the horizontal text elements and the size of the shift (the width of the text along the y-axis)
+ctx.font = FONT;
+ctx.textBaseline = TEXT_BASELINE;
 const textWidth = ctx.measureText(data[0].time).actualBoundingBoxRight;
 const textHeight = ctx.measureText(data[0].time).fontBoundingBoxAscent;
 const shift = ctx.measureText(verticalLabels[0]).actualBoundingBoxRight;
 
-const [width, height] = [textWidth * data.length * spacing + shift, canvas.height()];
+const [width, height] = [textWidth * data.length * SPACING + shift, canvas.height()];
 canvas.prop("width", width);
 canvas.prop("height", height);
 canvas.css("width", width + "px");
-const graphHeight = height - textHeight - lineWidth;
+const graphHeight = height - textHeight - LINE_WIDTH;
 
-// Set the line width, fill color and font after the canvas size has been set (which clears the screen)
-ctx.lineWidth = lineWidth;
-ctx.fillStyle = textColor;
-ctx.font = font;
+// Set the line width, fill color, font and text baseline after the canvas size has been set (which clears the screen)
+ctx.lineWidth = LINE_WIDTH;
+ctx.fillStyle = TEXT_COLOR;
+ctx.font = FONT;
+ctx.textBaseline = TEXT_BASELINE;
 
 function plotData() {
     ctx.save();
@@ -54,7 +56,7 @@ function plotData() {
     // Plot the data graph
     ctx.beginPath();
     data.forEach((item, i) => {
-        const positionX = textWidth * i * spacing + textWidth / 2;
+        const positionX = textWidth * i * SPACING + textWidth / 2;
         if (i === 0) {
             ctx.moveTo(positionX, item.precipitationProbability * graphHeight);
             return;
@@ -66,14 +68,14 @@ function plotData() {
     // Plot the data points
     data.forEach((item, i) => {
         ctx.beginPath();
-        const positionX = textWidth * i * spacing + textWidth / 2;
+        const positionX = textWidth * i * SPACING + textWidth / 2;
         ctx.arc(positionX, item.precipitationProbability * graphHeight, 2, 0, Math.PI * 2);
         ctx.fill();
     });
 
     // Render the text along the x-axis (times)
     data.forEach((item, i) => {
-        const positionX = textWidth * i * spacing;
+        const positionX = textWidth * i * SPACING;
         ctx.fillText(item.time, positionX, height);
     });
 
@@ -100,19 +102,21 @@ function render() {
     ctx.beginPath();
     ctx.save();
     ctx.textAlign = "center";
-    ctx.font = verticalLabelsFont;
-    ctx.fillStyle = opaqueTextColor;
+    ctx.font = VERTICAL_LABELS_FONT;
+    ctx.fillStyle = OPAQUE_TEXT_COLOR;
     const textHeight = ctx.measureText(verticalLabels[0]).fontBoundingBoxAscent;
     verticalLabels.forEach((text, i) => {
-        ctx.fillText(text, shift / 2, textHeight + height * (i / verticalLabels.length));
+        const positionY =
+            textHeight + (graphHeight - textHeight) * (i / (verticalLabels.length - 1));
+        ctx.fillText(text, shift / 2, positionY);
     });
     ctx.restore();
 
     // Render the lines for the x-axis and y-axis
     ctx.beginPath();
-    ctx.moveTo(shift + lineWidth, 0);
-    ctx.lineTo(shift + lineWidth, graphHeight);
-    ctx.lineTo(shift + width + lineWidth, graphHeight);
+    ctx.moveTo(shift + LINE_WIDTH, 0);
+    ctx.lineTo(shift + LINE_WIDTH, graphHeight);
+    ctx.lineTo(shift + width + LINE_WIDTH, graphHeight);
     ctx.stroke();
 
     // restore the translate
