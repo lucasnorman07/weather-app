@@ -11,7 +11,7 @@
         }
 
         & > div {
-            align-content: center;
+            text-align: center;
 
             #current-temperature {
                 font-size: 6rem;
@@ -31,7 +31,6 @@
             }
             #current-weather-text {
                 font-size: $heading-font-size;
-                text-align: center;
             }
         }
     }

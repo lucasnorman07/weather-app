@@ -4,8 +4,12 @@
   padding: 0;
 }
 
+@font-face {
+  font-family: Inter;
+  src: url(../assets/fonts/Inter-VariableFont_opsz\,wght.ttf);
+}
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   background: linear-gradient(#4472E8, #264082);
   height: 100dvh;
 }
@@ -25,7 +29,7 @@ body {
   align-self: start;
 }
 #current-weather-card #current-weather-and-temperature > div {
-  align-content: center;
+  text-align: center;
 }
 #current-weather-card #current-weather-and-temperature > div #current-temperature {
   font-size: 6rem;
@@ -44,7 +48,6 @@ body {
 }
 #current-weather-card #current-weather-and-temperature > div #current-weather-text {
   font-size: 1.2rem;
-  text-align: center;
 }
 #current-weather-card #highest-lowest-and-apparent-temperature {
   display: flex;

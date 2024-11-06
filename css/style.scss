@@ -3,8 +3,13 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: Inter;
+    src: url(../assets/fonts/Inter-VariableFont_opsz\,wght.ttf);
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Inter, Arial, Helvetica, sans-serif;
     background: linear-gradient(#4472E8, #264082);
     height: 100dvh;
 }
