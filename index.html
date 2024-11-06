@@ -5,9 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Weather app</title>
         <script defer src="lib/jquery.js"></script>
-        <script type="module" src="js/main.js"></script>
-        <script type="module" src="js/day_night.js"></script>
-        <script type="module" src="js/precipitation.js"></script>
+        <script type="module" src="js/controller.js"></script>
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
@@ -19,19 +17,19 @@
                 <section id="current-weather-card">
                     <div>
                         <h2>Current Weather</h2>
-                        <p>18:25</p>
+                        <p data-property="time">18:25</p>
                     </div>
                     <div id="current-weather-and-temperature">
-                        <img src="temp/tempWeatherIcon.png" alt="Current weather" />
+                        <img data-property="weatherIcon" src="temp/tempWeatherIcon.png" alt="Current weather" />
                         <div>
-                            <p id="current-temperature">22</p>
-                            <p id="current-weather-text">Heavy rain</p>
+                            <p data-property="currentTemp" id="current-temperature">22</p>
+                            <p data-property="weatherText" id="current-weather-text">Heavy rain</p>
                         </div>
                     </div>
                     <div id="highest-lowest-and-apparent-temperature">
-                        <p>H:24°</p>
-                        <p>L:8°</p>
-                        <p>Feels like: 23°</p>
+                        <p>H: <span data-property="maxTemp">24</span>°</p>
+                        <p>L: <span data-property="minTemp">8</span>°</p>
+                        <p>Feels like: <span data-property="apparentTemp">23</span>°</p>
                     </div>
                 </section>
                 <section id="weather-conditions-card">

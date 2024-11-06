@@ -28,7 +28,7 @@ body {
   align-content: center;
 }
 #current-weather-card #current-weather-and-temperature > div #current-temperature {
-  font-size: 7rem;
+  font-size: 6rem;
   line-height: 5.5rem;
   font-weight: bold;
   position: relative;
@@ -44,6 +44,7 @@ body {
 }
 #current-weather-card #current-weather-and-temperature > div #current-weather-text {
   font-size: 1.2rem;
+  text-align: center;
 }
 #current-weather-card #highest-lowest-and-apparent-temperature {
   display: flex;
