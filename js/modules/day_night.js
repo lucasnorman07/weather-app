@@ -18,15 +18,16 @@ const SUN_RADIUS = 12;
 const ELLIPSE_WIDTH = width - INSET.x * 2;
 const ELLIPSE_HEIGHT = height - INSET.y;
 
-// Helper function to get the x and y positions (from -1 to 1) from an angle (0 = left, 180 = right)
-function getCirclePosition(angle) {
+// Helper function to get the x and y positions (-1 to 1) from a percentage (0 = left, 1 = right)
+function getCirclePosition(position) {
     return {
-        x: Math.cos(((angle - 180) * Math.PI) / 180),
-        y: Math.sin(((angle - 180) * Math.PI) / 180)
+        x: Math.cos(((position - 1) * 180 * Math.PI) / 180),
+        y: Math.sin(((position - 1) * 180 * Math.PI) / 180)
     };
 }
 
-function render(sunPosition) {
+export default function render(sunPosition) {
+    ctx.clearRect(0, 0, width, height);
     ctx.lineWidth = LINE_WIDTH;
     ctx.strokeStyle = "rgb(255, 217, 0)";
     ctx.fillStyle = "orange";
@@ -49,13 +50,3 @@ function render(sunPosition) {
     );
     ctx.fill();
 }
-
-// TODO, temporary code that is to be removed when the actual data is put in place
-let position = 0;
-let velocity = 2;
-setInterval(() => {
-    position += velocity;
-    if (position <= 0 || position >= 180) velocity *= -1;
-    ctx.clearRect(0, 0, width, height);
-    render(position);
-}, 1000 / 60);

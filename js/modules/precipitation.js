@@ -2,26 +2,10 @@ const canvasWrapper = $("#precipitation-canvas-wrapper");
 const canvas = $("#precipitation-canvas");
 const ctx = canvas.get(0).getContext("2d");
 
-const data = [
-    { time: "06", precipitationProbability: Math.random() },
-    { time: "07", precipitationProbability: Math.random() },
-    { time: "08", precipitationProbability: Math.random() },
-    { time: "09", precipitationProbability: Math.random() },
-    { time: "10", precipitationProbability: Math.random() },
-    { time: "11", precipitationProbability: Math.random() },
-    { time: "12", precipitationProbability: Math.random() },
-    { time: "13", precipitationProbability: Math.random() },
-    { time: "15", precipitationProbability: Math.random() },
-    { time: "16", precipitationProbability: Math.random() },
-    { time: "17", precipitationProbability: Math.random() },
-    { time: "18", precipitationProbability: Math.random() },
-    { time: "19", precipitationProbability: Math.random() },
-    { time: "20", precipitationProbability: Math.random() },
-    { time: "21", precipitationProbability: Math.random() }
-];
+// This will be updated when the default export function is called
+let precipitationData;
 
-const verticalLabels = ["100%", "50%", "0%"];
-
+const VERTICAL_LABELS = ["100%", "50%", "0%"];
 const SPACING = 1.5;
 const LINE_WIDTH = 0.5;
 const TEXT_COLOR = "white";
@@ -30,24 +14,29 @@ const FONT = "1rem Arial";
 const TEXT_BASELINE = "bottom";
 const VERTICAL_LABELS_FONT = "0.95rem Arial";
 
-// Set the FONT to be able to define the size of the horizontal text elements and the size of the shift (the width of the text along the y-axis)
-ctx.font = FONT;
-ctx.textBaseline = TEXT_BASELINE;
-const textWidth = ctx.measureText(data[0].time).actualBoundingBoxRight;
-const textHeight = ctx.measureText(data[0].time).fontBoundingBoxAscent;
-const shift = ctx.measureText(verticalLabels[0]).actualBoundingBoxRight;
+let textWidth, textHeight, width, height, shift, graphHeight;
+function updatePreciptationData(data) {
+    precipitationData = data;
 
-const [width, height] = [textWidth * data.length * SPACING + shift, canvas.height()];
-canvas.prop("width", width);
-canvas.prop("height", height);
-canvas.css("width", width + "px");
-const graphHeight = height - textHeight - LINE_WIDTH;
+    // Set the FONT to be able to define the size of the horizontal text elements and the size of the shift (the width of the text along the y-axis)
+    ctx.font = FONT;
+    ctx.textBaseline = TEXT_BASELINE;
+    textWidth = ctx.measureText(data[0].time).actualBoundingBoxRight;
+    textHeight = ctx.measureText(data[0].time).fontBoundingBoxAscent;
+    shift = ctx.measureText(VERTICAL_LABELS[0]).actualBoundingBoxRight;
 
-// Set the line width, fill color, font and text baseline after the canvas size has been set (which clears the screen)
-ctx.lineWidth = LINE_WIDTH;
-ctx.fillStyle = TEXT_COLOR;
-ctx.font = FONT;
-ctx.textBaseline = TEXT_BASELINE;
+    [width, height] = [textWidth * data.length * SPACING + shift, canvas.height()];
+    canvas.prop("width", width);
+    canvas.prop("height", height);
+    canvas.css("width", width + "px");
+    graphHeight = height - textHeight - LINE_WIDTH;
+
+    // Set the line width, fill color, font and text baseline after the canvas size has been set (which clears the screen)
+    ctx.lineWidth = LINE_WIDTH;
+    ctx.fillStyle = TEXT_COLOR;
+    ctx.font = FONT;
+    ctx.textBaseline = TEXT_BASELINE;
+}
 
 function plotData() {
     ctx.save();
@@ -55,7 +44,7 @@ function plotData() {
 
     // Plot the data graph
     ctx.beginPath();
-    data.forEach((item, i) => {
+    precipitationData.forEach((item, i) => {
         const positionX = textWidth * i * SPACING + textWidth / 2;
         if (i === 0) {
             ctx.moveTo(positionX, item.precipitationProbability * graphHeight);
@@ -66,7 +55,7 @@ function plotData() {
     ctx.stroke();
 
     // Plot the data points
-    data.forEach((item, i) => {
+    precipitationData.forEach((item, i) => {
         ctx.beginPath();
         const positionX = textWidth * i * SPACING + textWidth / 2;
         ctx.arc(positionX, item.precipitationProbability * graphHeight, 2, 0, Math.PI * 2);
@@ -74,7 +63,7 @@ function plotData() {
     });
 
     // Render the text along the x-axis (times)
-    data.forEach((item, i) => {
+    precipitationData.forEach((item, i) => {
         const positionX = textWidth * i * SPACING;
         ctx.fillText(item.time, positionX, height);
     });
@@ -104,10 +93,10 @@ function render() {
     ctx.textAlign = "center";
     ctx.font = VERTICAL_LABELS_FONT;
     ctx.fillStyle = OPAQUE_TEXT_COLOR;
-    const textHeight = ctx.measureText(verticalLabels[0]).fontBoundingBoxAscent;
-    verticalLabels.forEach((text, i) => {
+    const textHeight = ctx.measureText(VERTICAL_LABELS[0]).fontBoundingBoxAscent;
+    VERTICAL_LABELS.forEach((text, i) => {
         const positionY =
-            textHeight + (graphHeight - textHeight) * (i / (verticalLabels.length - 1));
+            textHeight + (graphHeight - textHeight) * (i / (VERTICAL_LABELS.length - 1));
         ctx.fillText(text, shift / 2, positionY);
     });
     ctx.restore();
@@ -122,6 +111,10 @@ function render() {
     // restore the translate
     ctx.restore();
 }
-render();
 
 canvasWrapper.on("scroll", render);
+
+export default function (data) {
+    updatePreciptationData(data);
+    render();
+}

@@ -20,7 +20,11 @@
                         <p data-property="time">18:25</p>
                     </div>
                     <div id="current-weather-and-temperature">
-                        <img data-property="weatherIcon" src="temp/tempWeatherIcon.png" alt="Current weather" />
+                        <img
+                            data-property="weatherIcon"
+                            src="temp/tempWeatherIcon.png"
+                            alt="Current weather"
+                        />
                         <div>
                             <p data-property="currentTemp" id="current-temperature">22</p>
                             <p data-property="weatherText" id="current-weather-text">Heavy rain</p>
@@ -37,241 +41,589 @@
                     <div>
                         <img src="temp/tempWeatherIcon.png" alt="Humidity" />
                         <p>Humidity</p>
-                        <p>85%</p>
+                        <p><span data-property="humidity">85</span>%</p>
                     </div>
                     <div>
                         <img src="temp/tempWeatherIcon.png" alt="UV Index" />
                         <p>UV Index</p>
-                        <p>3.5</p>
+                        <p data-property="uvIndex">3.5</p>
                     </div>
                     <div>
                         <img src="temp/tempWeatherIcon.png" alt="Pressure" />
                         <p>Pressure</p>
-                        <p>1032</p>
+                        <p><span data-property="pressure">1032</span> hPa</p>
                     </div>
                     <div>
                         <img src="temp/tempWeatherIcon.png" alt="Wind speed" />
                         <p>Wind speed</p>
-                        <p>3 m/s</p>
+                        <p><span data-property="windSpeed">3</span> m/s</p>
                     </div>
                     <div>
                         <img src="temp/tempWeatherIcon.png" alt="Visibility" />
                         <p>Visibility</p>
-                        <p>1.2 km</p>
+                        <p><span data-property="visibility">1.2</span> km</p>
                     </div>
                     <div>
                         <img src="temp/tempWeatherIcon.png" alt="Dewpoint" />
                         <p>Dewpoint</p>
-                        <p>80%</p>
+                        <p><span data-property="dewpoint">80</span>%</p>
                     </div>
                 </section>
                 <section id="hourly-weather-card">
                     <h2>Hourly Weather</h2>
-                    <div id="hourly-weather-items">
+                    <div data-array-property="hourlyWeather" id="hourly-weather-items">
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                         <div class="hourly-weather-item">
-                            <p class="hourly-weather-item-time">06:00</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p class="hourly-weather-item-temperature">22°</p>
+                            <p data-array-element-property="time" class="hourly-weather-item-time">
+                                06:00
+                            </p>
+                            <img
+                                data-array-element-property="weatherIcon"
+                                src="temp/tempWeatherIcon.png"
+                                alt="Current weather"
+                            />
+                            <p>
+                                <span
+                                    data-array-element-property="temp"
+                                    class="hourly-weather-item-temperature"
+                                    >22</span
+                                >°
+                            </p>
                         </div>
                     </div>
                 </section>
                 <section id="daily-weather-card">
                     <h2>7-Day forcast</h2>
-                    <div id="daily-weather-items">
+                    <div data-array-property="dailyWeather" id="daily-weather-items">
                         <div class="daily-weather-item">
-                            <p class="daily-weather-item-day">Yesterday</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p>H:21°</p>
-                            <p>L:7°</p>
+                            <p data-array-element-property="dayName" class="daily-weather-item-day">Yesterday</p>
+                            <img data-array-element-property="weatherIcon" src="temp/tempWeatherIcon.png" alt="Current weather" />
+                            <p>H:<span data-array-element-property="maxTemp">21</span>°</p>
+                            <p>L:<span data-array-element-property="minTemp">7</span>°</p>
                         </div>
                         <!-- <hr /> -->
                         <div class="daily-weather-item">
-                            <p class="daily-weather-item-day">Today</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p>H:21°</p>
-                            <p>L:7°</p>
+                            <p data-array-element-property="dayName" class="daily-weather-item-day">Today</p>
+                            <img data-array-element-property="weatherIcon" src="temp/tempWeatherIcon.png" alt="Current weather" />
+                            <p>H:<span data-array-element-property="maxTemp">21</span>°</p>
+                            <p>L:<span data-array-element-property="minTemp">7</span>°</p>
                         </div>
                         <!-- <hr /> -->
                         <div class="daily-weather-item">
-                            <p class="daily-weather-item-day">Monday</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p>H:21°</p>
-                            <p>L:7°</p>
+                            <p data-array-element-property="dayName" class="daily-weather-item-day">Monday</p>
+                            <img data-array-element-property="weatherIcon" src="temp/tempWeatherIcon.png" alt="Current weather" />
+                            <p>H:<span data-array-element-property="maxTemp">21</span>°</p>
+                            <p>L:<span data-array-element-property="minTemp">7</span>°</p>
                         </div>
                         <!-- <hr /> -->
                         <div class="daily-weather-item">
-                            <p class="daily-weather-item-day">Tuesday</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p>H:21°</p>
-                            <p>L:7°</p>
+                            <p data-array-element-property="dayName" class="daily-weather-item-day">Tuesday</p>
+                            <img data-array-element-property="weatherIcon" src="temp/tempWeatherIcon.png" alt="Current weather" />
+                            <p>H:<span data-array-element-property="maxTemp">21</span>°</p>
+                            <p>L:<span data-array-element-property="minTemp">7</span>°</p>
                         </div>
                         <!-- <hr /> -->
                         <div class="daily-weather-item">
-                            <p class="daily-weather-item-day">Wednesday</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p>H:21°</p>
-                            <p>L:7°</p>
+                            <p data-array-element-property="dayName" class="daily-weather-item-day">Wednesday</p>
+                            <img data-array-element-property="weatherIcon" src="temp/tempWeatherIcon.png" alt="Current weather" />
+                            <p>H:<span data-array-element-property="maxTemp">21</span>°</p>
+                            <p>L:<span data-array-element-property="minTemp">7</span>°</p>
                         </div>
                         <!-- <hr /> -->
                         <div class="daily-weather-item">
-                            <p class="daily-weather-item-day">Thursday</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p>H:21°</p>
-                            <p>L:7°</p>
+                            <p data-array-element-property="dayName" class="daily-weather-item-day">Thursday</p>
+                            <img data-array-element-property="weatherIcon" src="temp/tempWeatherIcon.png" alt="Current weather" />
+                            <p>H:<span data-array-element-property="maxTemp">21</span>°</p>
+                            <p>L:<span data-array-element-property="minTemp">7</span>°</p>
                         </div>
                         <!-- <hr /> -->
                         <div class="daily-weather-item">
-                            <p class="daily-weather-item-day">Friday</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p>H:21°</p>
-                            <p>L:7°</p>
+                            <p data-array-element-property="dayName" class="daily-weather-item-day">Friday</p>
+                            <img data-array-element-property="weatherIcon" src="temp/tempWeatherIcon.png" alt="Current weather" />
+                            <p>H:<span data-array-element-property="maxTemp">21</span>°</p>
+                            <p>L:<span data-array-element-property="minTemp">7</span>°</p>
                         </div>
                         <!-- <hr /> -->
                         <div class="daily-weather-item">
-                            <p class="daily-weather-item-day">Saturday</p>
-                            <img src="temp/tempWeatherIcon.png" alt="Current weather" />
-                            <p>H:21°</p>
-                            <p>L:7°</p>
+                            <p data-array-element-property="dayName" class="daily-weather-item-day">Saturday</p>
+                            <img data-array-element-property="weatherIcon" src="temp/tempWeatherIcon.png" alt="Current weather" />
+                            <p>H:<span data-array-element-property="maxTemp">21</span>°</p>
+                            <p>L:<span data-array-element-property="minTemp">7</span>°</p>
                         </div>
                     </div>
                 </section>
@@ -279,26 +631,26 @@
                     <h2>Time of day</h2>
                     <canvas id="day-night-canvas"></canvas>
                     <p>
-                        <span id="sunrise">06:20</span>
-                        <span id="sunset">22:00</span>
+                        <span data-property="sunrise" id="sunrise">06:20</span>
+                        <span data-property="sunset" id="sunset">22:00</span>
                     </p>
                 </section>
                 <section id="air-quality-card">
                     <div id="aqi-wrapper">
                         <h2>Air quality</h2>
-                        <div id="air-quality-meter-wrapper">
+                        <div id="aqi-meter-wrapper">
                             <p id="aqi-indicator">Good (10)</p>
-                            <progress id="air-quality-meter" value="70" max="100"></progress>
+                            <progress id="aqi-meter" value="70" min="0" max="100"></progress>
                         </div>
                     </div>
                     <div id="air-quality-divider"></div>
                     <div id="pollen-wrapper">
                         <h2>Pollen</h2>
                         <ul>
-                            <li>Grass: Low</li>
-                            <li>Birch: High</li>
-                            <li>Ragweed: Low</li>
-                            <li>Alder: None</li>
+                            <li>Grass: <span data-property="grassPollen">Low</span></li>
+                            <li>Birch: <span data-property="birchPollen">High</span></li>
+                            <li>Ragweed: <span data-property="ragweedPollen">Low</span></li>
+                            <li>Alder: <span data-property="alderPollen">None</span></li>
                         </ul>
                     </div>
                 </section>

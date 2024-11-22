@@ -179,17 +179,19 @@ body {
   border: 0.3rem solid transparent;
   border-top-color: white;
 }
-#air-quality-card #aqi-wrapper #air-quality-meter {
+#air-quality-card #aqi-wrapper #aqi-meter {
   position: absolute;
   left: 50%;
   top: 70%;
   translate: -50% -50%;
   width: 100%;
   height: 0.7rem;
-  background: green;
   border-radius: 1rem;
 }
-#air-quality-card #aqi-wrapper #air-quality-meter::-webkit-progress-bar {
+#air-quality-card #aqi-wrapper #aqi-meter::-webkit-progress-value {
+  background-color: currentColor;
+}
+#air-quality-card #aqi-wrapper #aqi-meter::-webkit-progress-bar {
   border-radius: 1rem;
   background-color: lightgray;
   overflow: hidden;
