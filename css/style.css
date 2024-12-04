@@ -103,6 +103,9 @@ body {
   font-weight: bold;
   font-size: 1.2rem;
 }
+#hourly-weather-card #hourly-weather-items .hourly-weather-item .hourly-weather-item-temperature::after {
+  content: "°";
+}
 
 #daily-weather-card {
   display: flex;
@@ -118,10 +121,10 @@ body {
   display: none;
 }
 #daily-weather-card #daily-weather-items .daily-weather-item {
-  display: flex;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 0.5fr 1fr 1fr;
   padding: 0.825rem 0;
-  justify-content: space-between;
-  align-items: center;
   border-bottom: 0.05rem solid white;
 }
 #daily-weather-card #daily-weather-items .daily-weather-item:last-child {
@@ -133,6 +136,18 @@ body {
 }
 #daily-weather-card #daily-weather-items .daily-weather-item img {
   height: 1.5rem;
+}
+#daily-weather-card #daily-weather-items .daily-weather-item .daily-weather-item-max-temperature::before {
+  content: "H:";
+}
+#daily-weather-card #daily-weather-items .daily-weather-item .daily-weather-item-max-temperature::after {
+  content: "°";
+}
+#daily-weather-card #daily-weather-items .daily-weather-item .daily-weather-item-min-temperature::before {
+  content: "L:";
+}
+#daily-weather-card #daily-weather-items .daily-weather-item .daily-weather-item-min-temperature::after {
+  content: "°";
 }
 
 #day-night-card {

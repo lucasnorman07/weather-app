@@ -14,10 +14,10 @@
         }
 
         .daily-weather-item {
-            display: flex;
+            display: grid;
+            justify-items: center;
+            grid-template-columns: 1fr 0.5fr 1fr 1fr;
             padding: $default-spacing * 0.55 0;
-            justify-content: space-between;
-            align-items: center;
             border-bottom: $default-divider-width solid white;
 
             &:last-child {
@@ -31,6 +31,24 @@
 
             img {
                 height: 1.5rem;
+            }
+
+            .daily-weather-item-max-temperature {
+                &::before {
+                    content: "H:";
+                }
+                &::after {
+                    content: "°";
+                }
+            }
+
+            .daily-weather-item-min-temperature {
+                &::before {
+                    content: "L:";
+                }
+                &::after {
+                    content: "°";
+                }
             }
         }
     }

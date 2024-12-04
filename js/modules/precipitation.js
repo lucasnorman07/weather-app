@@ -6,7 +6,9 @@ const ctx = canvas.get(0).getContext("2d");
 let precipitationData;
 
 const VERTICAL_LABELS = ["100%", "50%", "0%"];
-const SPACING = 1.5;
+const SPACING = 2.8;
+const DOT_RADIUS = 2;
+const EDGE_PADDING = 6;
 const LINE_WIDTH = 0.5;
 const TEXT_COLOR = "white";
 const OPAQUE_TEXT_COLOR = "rgba(255, 255, 255, 0.5)";
@@ -14,8 +16,8 @@ const FONT = "1rem Arial";
 const TEXT_BASELINE = "bottom";
 const VERTICAL_LABELS_FONT = "0.95rem Arial";
 
-let textWidth, textHeight, width, height, shift, graphHeight;
-function updatePreciptationData(data) {
+let textWidth, textHeight, width, height, shift, graphHeight, fullGraphHeight;
+function updatePrecipitationData(data) {
     precipitationData = data;
 
     // Set the FONT to be able to define the size of the horizontal text elements and the size of the shift (the width of the text along the y-axis)
@@ -25,11 +27,13 @@ function updatePreciptationData(data) {
     textHeight = ctx.measureText(data[0].time).fontBoundingBoxAscent;
     shift = ctx.measureText(VERTICAL_LABELS[0]).actualBoundingBoxRight;
 
+    
     [width, height] = [textWidth * data.length * SPACING + shift, canvas.height()];
     canvas.prop("width", width);
     canvas.prop("height", height);
     canvas.css("width", width + "px");
-    graphHeight = height - textHeight - LINE_WIDTH;
+    fullGraphHeight = height - textHeight - LINE_WIDTH;
+    graphHeight = fullGraphHeight - EDGE_PADDING * 2;
 
     // Set the line width, fill color, font and text baseline after the canvas size has been set (which clears the screen)
     ctx.lineWidth = LINE_WIDTH;
@@ -40,36 +44,39 @@ function updatePreciptationData(data) {
 
 function plotData() {
     ctx.save();
-    ctx.translate(shift, 0);
+    ctx.translate(shift + EDGE_PADDING, EDGE_PADDING);
 
     // Plot the data graph
     ctx.beginPath();
     precipitationData.forEach((item, i) => {
         const positionX = textWidth * i * SPACING + textWidth / 2;
         if (i === 0) {
-            ctx.moveTo(positionX, item.precipitationProbability * graphHeight);
+            // Subtract from the graph height so it's not flipped
+            ctx.moveTo(positionX, graphHeight - item.precipitationProbability * graphHeight);
             return;
         }
-        ctx.lineTo(positionX, item.precipitationProbability * graphHeight);
+        // Subtract from the graph height so it's not flipped
+        ctx.lineTo(positionX, graphHeight - item.precipitationProbability * graphHeight);
     });
     ctx.stroke();
-
+    
     // Plot the data points
     precipitationData.forEach((item, i) => {
         ctx.beginPath();
         const positionX = textWidth * i * SPACING + textWidth / 2;
-        ctx.arc(positionX, item.precipitationProbability * graphHeight, 2, 0, Math.PI * 2);
+        // Subtract from the graph height so it's not flipped
+        ctx.arc(positionX, graphHeight - item.precipitationProbability * graphHeight, DOT_RADIUS, 0, Math.PI * 2);
         ctx.fill();
     });
 
+    // Restore the translate with shift and the dot radius
+    ctx.restore();
+
     // Render the text along the x-axis (times)
     precipitationData.forEach((item, i) => {
-        const positionX = textWidth * i * SPACING;
+        const positionX = textWidth * i * SPACING + shift;
         ctx.fillText(item.time, positionX, height);
     });
-
-    // Restore the translate with shift
-    ctx.restore();
 }
 
 function render() {
@@ -96,7 +103,7 @@ function render() {
     const textHeight = ctx.measureText(VERTICAL_LABELS[0]).fontBoundingBoxAscent;
     VERTICAL_LABELS.forEach((text, i) => {
         const positionY =
-            textHeight + (graphHeight - textHeight) * (i / (VERTICAL_LABELS.length - 1));
+            textHeight + (fullGraphHeight - textHeight) * (i / (VERTICAL_LABELS.length - 1));
         ctx.fillText(text, shift / 2, positionY);
     });
     ctx.restore();
@@ -104,8 +111,8 @@ function render() {
     // Render the lines for the x-axis and y-axis
     ctx.beginPath();
     ctx.moveTo(shift + LINE_WIDTH, 0);
-    ctx.lineTo(shift + LINE_WIDTH, graphHeight);
-    ctx.lineTo(shift + width + LINE_WIDTH, graphHeight);
+    ctx.lineTo(shift + LINE_WIDTH, fullGraphHeight);
+    ctx.lineTo(shift + width + LINE_WIDTH, fullGraphHeight);
     ctx.stroke();
 
     // restore the translate
@@ -114,7 +121,7 @@ function render() {
 
 canvasWrapper.on("scroll", render);
 
-export default function (data) {
-    updatePreciptationData(data);
+export default function (data) {    
+    updatePrecipitationData(data);
     render();
 }

@@ -35,6 +35,10 @@
             .hourly-weather-item-temperature {
                 font-weight: bold;
                 font-size: $heading-font-size;
+
+                &::after {
+                    content: "°";
+                }
             }
         }
     }
