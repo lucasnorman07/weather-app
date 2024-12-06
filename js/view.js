@@ -1,9 +1,9 @@
-import getWeatherData from "./model.js"
+import getWeatherData from "./model.js";
 import displayAQI from "./modules/aqi.js";
+import displayDailyWeather from "./modules/daily_weather.js";
 import displayDayNightData from "./modules/day_night.js";
+import displayHourlyWeather from "./modules/hourly_weather.js";
 import displayPrecipitation from "./modules/precipitation.js";
-import displayHourlyWeather from "./modules/hourly_weather.js"
-import displayDailyWeather from "./modules/daily_weather.js"
 
 // const weatherData = {
 //     currentTemp: -12,
@@ -110,14 +110,12 @@ import displayDailyWeather from "./modules/daily_weather.js"
 
 const weatherData = await getWeatherData();
 
-console.log( weatherData );
+console.log(weatherData);
 
 function timeToSeconds(time) {
     const [hours, minutes] = time.split(":");
     return (+hours * 60 + +minutes) * 60;
 }
-
-// console.log((weatherData.time - weatherData.sunrise) / (weatherData.sunset - weatherData.sunrise));
 
 displayDayNightData(
     (timeToSeconds(weatherData.time) - timeToSeconds(weatherData.sunrise)) /
@@ -125,11 +123,8 @@ displayDayNightData(
 );
 
 displayAQI(weatherData.AQI);
-
 displayPrecipitation(weatherData.precipitation);
-
 displayHourlyWeather(weatherData.hourly);
-
 displayDailyWeather(weatherData.daily);
 
 function setPropertyValue(element, value) {
@@ -140,28 +135,29 @@ function setPropertyValue(element, value) {
     }
 }
 
+$("[data-horizontal-scroll]").each(function () {
+    // This tracks if the mouse is pressed or not
+    this.onmousedown = () => {
+        this.dataset.mouseDown = "";
+    };
+    this.onmouseup = this.onmouseleave = () => {
+        delete this.dataset.mouseDown;
+        delete this.dataset.previousX;
+    };
+
+    // If the mouse is pressed and moved then scroll horizontally
+    this.onmousemove = function (e) {
+        if (this.dataset.mouseDown == null) return;
+
+        this.dataset.previousX = this.dataset.previousX ?? e.pageX;
+        this.scrollBy(-(e.pageX - this.dataset.previousX), 0);
+        this.dataset.previousX = e.pageX;
+    };
+});
+
 $("[data-property]").each(function () {
     setPropertyValue(this, weatherData[this.dataset.property]);
 });
-
-
-{/* <div class="hourly-weather-item">
-    <p data-array-element-property="time" class="hourly-weather-item-time">
-        06:00
-    </p>
-    <img
-        data-array-element-property="weatherIcon"
-        src="temp/tempWeatherIcon.png"
-        alt="Weather"
-    />
-    <p>
-        <span
-            data-array-element-property="temp"
-            class="hourly-weather-item-temperature"
-            >22</span
-        >°
-    </p>
-</div> */}
 
 $("[data-array-property]").each(function () {
     // Store the parent element so it can be referenced in the inner loop (because it overrides "this")
@@ -173,8 +169,7 @@ $("[data-array-property]").each(function () {
         `[data-array-property="${wrapper.dataset.arrayProperty}"] [data-array-element-property]`
     ).each(function () {
         const index = propertiesCount.get(this.dataset.arrayElementProperty) || 0;
-        console.log(wrapper.dataset.arrayProperty);
-        
+
         setPropertyValue(
             this,
             weatherData[wrapper.dataset.arrayProperty][index][this.dataset.arrayElementProperty]

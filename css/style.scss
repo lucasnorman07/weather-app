@@ -20,6 +20,19 @@ body {
     justify-content: space-between;
 }
 
+[data-horizontal-scroll] {
+    cursor: grab;
+    user-select: none;
+
+    img {
+        pointer-events: none;
+    }
+
+    &[data-mouse-down] {
+        cursor: grabbing;
+    }
+}
+
 $default-spacing: 1.5rem;
 $default-border-radius: 1rem;
 $default-divider-width: 0.05rem;

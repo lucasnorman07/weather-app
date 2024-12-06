@@ -20,6 +20,19 @@ body {
   justify-content: space-between;
 }
 
+[data-horizontal-scroll] {
+  cursor: grab;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+[data-horizontal-scroll] img {
+  pointer-events: none;
+}
+[data-horizontal-scroll][data-mouse-down] {
+  cursor: grabbing;
+}
+
 #current-weather-card #current-weather-and-temperature {
   display: flex;
   justify-content: space-between;
