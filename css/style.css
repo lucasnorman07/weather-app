@@ -10,7 +10,7 @@
 }
 body {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  background: linear-gradient(#4472E8, #264082);
+  background: linear-gradient(#4472e8, #264082);
   height: 100dvh;
 }
 
@@ -20,16 +20,19 @@ body {
   justify-content: space-between;
 }
 
-[data-horizontal-scroll] {
+[data-horizontal-scroll],
+[data-vertical-scroll] {
   cursor: grab;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
-[data-horizontal-scroll] img {
+[data-horizontal-scroll] img,
+[data-vertical-scroll] img {
   pointer-events: none;
 }
-[data-horizontal-scroll][data-mouse-down] {
+[data-horizontal-scroll][data-mouse-down],
+[data-vertical-scroll][data-mouse-down] {
   cursor: grabbing;
 }
 
@@ -124,6 +127,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 0.75rem;
 }
 #daily-weather-card #daily-weather-items {
   display: flex;
@@ -136,16 +140,16 @@ body {
 #daily-weather-card #daily-weather-items .daily-weather-item {
   display: grid;
   justify-items: center;
-  grid-template-columns: 1fr 0.5fr 1fr 1fr;
+  grid-template-columns: 1.2fr 0.5fr 0.8fr 0.8fr;
   padding: 0.825rem 0;
   border-bottom: 0.05rem solid white;
 }
 #daily-weather-card #daily-weather-items .daily-weather-item:last-child {
-  padding-bottom: 0;
   border-bottom: 0;
 }
 #daily-weather-card #daily-weather-items .daily-weather-item .daily-weather-item-day {
   flex-basis: 5rem;
+  justify-self: left;
 }
 #daily-weather-card #daily-weather-items .daily-weather-item img {
   height: 1.5rem;
@@ -155,6 +159,9 @@ body {
 }
 #daily-weather-card #daily-weather-items .daily-weather-item .daily-weather-item-max-temperature::after {
   content: "°";
+}
+#daily-weather-card #daily-weather-items .daily-weather-item .daily-weather-item-min-temperature {
+  justify-self: right;
 }
 #daily-weather-card #daily-weather-items .daily-weather-item .daily-weather-item-min-temperature::before {
   content: "L:";
@@ -250,7 +257,7 @@ body {
   top: 50%;
   translate: -50% -50%;
   color: white;
-  width: 68rem;
+  width: 70rem;
   /*85*/
   height: 40rem;
   /*50*/

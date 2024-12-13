@@ -1,6 +1,6 @@
 #air-quality-card {
     display: flex;
-    gap: calc($default-spacing / 2);
+    gap: $small-spacing;
 
     #aqi-wrapper {
         flex-grow: 1;

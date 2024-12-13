@@ -135,23 +135,28 @@ function setPropertyValue(element, value) {
     }
 }
 
-$("[data-horizontal-scroll]").each(function () {
+$("[data-horizontal-scroll], [data-vertical-scroll]").each(function () {
+    const horizontalScroll = this.dataset.horizontalScroll != null;
+
     // This tracks if the mouse is pressed or not
     this.onmousedown = () => {
         this.dataset.mouseDown = "";
     };
     this.onmouseup = this.onmouseleave = () => {
         delete this.dataset.mouseDown;
-        delete this.dataset.previousX;
+        delete this.dataset.previousPosition;
     };
 
     // If the mouse is pressed and moved then scroll horizontally
-    this.onmousemove = function (e) {
+    this.onmousemove = e => {
         if (this.dataset.mouseDown == null) return;
 
-        this.dataset.previousX = this.dataset.previousX ?? e.pageX;
-        this.scrollBy(-(e.pageX - this.dataset.previousX), 0);
-        this.dataset.previousX = e.pageX;
+        const currentPosition = horizontalScroll ? e.pageX : e.pageY;
+
+        this.dataset.previousPosition = this.dataset.previousPosition ?? currentPosition;
+        if (horizontalScroll) this.scrollBy(-(currentPosition - +this.dataset.previousPosition), 0);
+        else this.scrollBy(0, -(currentPosition - +this.dataset.previousPosition));
+        this.dataset.previousPosition = currentPosition;
     };
 });
 

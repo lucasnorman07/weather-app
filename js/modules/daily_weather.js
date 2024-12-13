@@ -7,7 +7,7 @@ export default function (days) {
             children: [
                 createElement("p", {
                     classList: "daily-weather-item-day",
-                    textContent: "Friday!"
+                    textContent: day.name
                 }),
                 createElement("img", {
                     src: day.weatherIcon,
