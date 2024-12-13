@@ -200,19 +200,10 @@ body {
 }
 #air-quality-card #aqi-wrapper #aqi-indicator {
   position: absolute;
-  left: 70%;
+  left: 50%;
   top: 35%;
   translate: -50%;
   white-space: nowrap;
-}
-#air-quality-card #aqi-wrapper #aqi-indicator::before {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  translate: -50% 100%;
-  content: "";
-  border: 0.3rem solid transparent;
-  border-top-color: white;
 }
 #air-quality-card #aqi-wrapper #aqi-meter {
   position: absolute;

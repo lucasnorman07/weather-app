@@ -20,7 +20,6 @@ export default function (AQI) {
         aqiColor = "green";
     }
 
-    aqiIndicator.css("left", `${Math.min(AQI, 100)}%`);
     aqiIndicator.text(`${aqiText} (${AQI})`);
     airQualityMeter.val(AQI);
     // Change the "color" of the meter so the progress value color can use "currentColor"
