@@ -17,7 +17,7 @@
         .daily-weather-item {
             display: grid;
             justify-items: center;
-            grid-template-columns: 1.2fr 0.5fr 0.8fr 0.8fr;
+            grid-template-columns: 1fr 0.6fr 0.5fr 0.5fr;
             padding: $default-spacing * 0.55 0;
             border-bottom: $default-divider-width solid white;
 
@@ -32,6 +32,7 @@
 
             img {
                 height: 1.5rem;
+                scale: 1.4;
             }
 
             .daily-weather-item-max-temperature {

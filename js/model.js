@@ -1,3 +1,5 @@
+import { getWeatherDescription, getWeatherIcon } from "./modules/weather_codes.js";
+
 // TODO, update urls to only include the necessary data ;)
 const weatherDataURL = (latitude, longitude, timezone) =>
     `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,surface_pressure,wind_speed_10m&hourly=precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,dew_point_2m,temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,surface_pressure,visibility,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&wind_speed_unit=ms&timezone=${timezone}&past_days=2&forecast_days=16`;
@@ -24,12 +26,12 @@ function parseCurrentWeather(data) {
         temperature_2m_min: [_yesterday_min, minTemp]
     } = data.daily;
     return {
-        currentTemp,
-        apparentTemp,
-        weatherText: "Heavy sun", // TODO: replace this with a text generated from the weatherCode
-        weatherIcon: "../temp/sunIcon.png", // TODO: replace this with an image generated from the weatherCode
-        maxTemp,
-        minTemp
+        currentTemp: Math.round(currentTemp),
+        apparentTemp: Math.round(apparentTemp),
+        weatherText: getWeatherDescription(weatherCode, data.current.is_day),
+        weatherIcon: getWeatherIcon(weatherCode, data.current.isDay),
+        maxTemp: Math.round(maxTemp),
+        minTemp: Math.round(minTemp)
     };
 }
 function parseWeatherConditions(data) {
@@ -52,7 +54,7 @@ function parseWeatherConditions(data) {
         humidity,
         uvIndex,
         visibility,
-        dewpoint
+        dewpoint: Math.round(dewpoint)
     };
 }
 function parseDayNightData(data) {
@@ -99,25 +101,34 @@ function parseAirQuality(data) {
 function parseHourlyWeather(data) {
     // Loop over all of the hours and construct a data object for that hour
     return data.hourly.time.map((time, i) => {
+        const weatherCode = data.hourly.weather_code[i];
+        const currentDate = new Date(time);
+        const dayIndex = Math.floor(i / 24);
+        // Calculate if the current hour has day light or not
+        const isDay = currentDate > new Date(data.daily.sunrise[dayIndex]) && currentDate < new Date(data.daily.sunset[dayIndex]);
+        console.log({currentDate, sunrise: new Date(data.daily.sunrise[1]), sunset: new Date(data.daily.sunset[1]), dayIndex});
+        
         return {
-            temp: data.hourly.temperature_2m[i],
-            // WeatherCode: data.hourly.weather_code[i],
-            weatherText: "Heavy sun", // TODO: replace this with a text generated from the data.hourly.weather_code[i],
-            weatherIcon: "../temp/sunIcon.png", // TODO: replace this with an image generated from the data.hourly.weather_code[i],
-            time: `${new Date(time).getHours()}:00`
+            temp: Math.round(data.hourly.temperature_2m[i]),
+            weatherText: getWeatherDescription(weatherCode, isDay),
+            weatherIcon: getWeatherIcon(weatherCode, isDay),
+            time: `${currentDate.getHours()}:00`
         };
     });
 }
-function parseDailyWeather(data) {    
+function parseDailyWeather(data) {
     // Loop over all of the days and construct a data object for that day
     const days = data.daily.time.map((time, i) => {
+        const weatherCode = data.daily.weather_code[i];
         return {
-            minTemp: data.daily.temperature_2m_min[i],
-            maxTemp: data.daily.temperature_2m_max[i],
-            // WeatherCode: data.daily.weather_code[i],
-            weatherText: "Heavy sun", // TODO: replace this with a text generated from the data.daily.weather_code[i],
-            weatherIcon: "../temp/sunIcon.png", // TODO: replace this with an image generated from the data.daily.weather_code[i],
-            name: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][new Date(time).getDay()],
+            minTemp: Math.round(data.daily.temperature_2m_min[i]),
+            maxTemp: Math.round(data.daily.temperature_2m_max[i]),
+            // Pass true to get day icons
+            weatherText: getWeatherDescription(weatherCode, true),
+            weatherIcon: getWeatherIcon(weatherCode, true),
+            name: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][
+                new Date(time).getDay()
+            ],
             time
         };
     });
@@ -129,17 +140,34 @@ function parseDailyWeather(data) {
     return days;
 }
 export default async function () {
+    const position = new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                resolve({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                });
+            });
+            return;
+        }
+        reject("Location is not turned on");
+    });
+
+    const {latitude, longitude} = await position;
+
     const weatherData = await getWeatherData(
-        58,
-        13,
+        latitude,
+        longitude,
         Intl.DateTimeFormat().resolvedOptions().timeZone
     );
     const airQualityData = await getAirQualityData(
-        58,
-        13,
+        latitude,
+        longitude,
         Intl.DateTimeFormat().resolvedOptions().timeZone
     );
     return {
+        latitude,
+        longitude,
         ...parseCurrentWeather(weatherData),
         ...parseWeatherConditions(weatherData),
         daily: parseDailyWeather(weatherData),
