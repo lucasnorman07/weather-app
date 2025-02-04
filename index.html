@@ -17,56 +17,57 @@
                 <section id="current-weather-card">
                     <div>
                         <h2>Current Weather</h2>
-                        <p data-property="time">18:25</p>
+                        <p data-property="time">...</p>
                     </div>
                     <div id="current-weather-and-temperature">
+                        <!-- The source gets updated by JS, this is a placeholder -->
                         <img
                             data-property="weatherIcon"
-                            src="temp/tempWeatherIcon.png"
+                            src="assets/icons/weather/cloudy.svg"
                             alt="Current weather"
                         />
                         <div>
-                            <p data-property="currentTemp" id="current-temperature">22</p>
-                            <p data-property="weatherText" id="current-weather-text">Heavy rain</p>
+                            <p data-property="currentTemp" id="current-temperature">...</p>
+                            <p data-property="weatherText" id="current-weather-text">...</p>
                         </div>
                     </div>
                     <div id="highest-lowest-and-apparent-temperature">
-                        <p>H: <span data-property="maxTemp">24</span>°</p>
-                        <p>L: <span data-property="minTemp">8</span>°</p>
-                        <p>Feels like: <span data-property="apparentTemp">23</span>°</p>
+                        <p>H: <span data-property="maxTemp">...</span>°</p>
+                        <p>L: <span data-property="minTemp">...</span>°</p>
+                        <p>Feels like: <span data-property="apparentTemp">...</span>°</p>
                     </div>
                 </section>
                 <section id="weather-conditions-card">
                     <h2>Weather Conditions</h2>
                     <div>
-                        <img src="temp/tempWeatherIcon.png" alt="Humidity" />
+                        <img src="assets/icons/humidity.svg" alt="Humidity" />
                         <p>Humidity</p>
-                        <p><span data-property="humidity">85</span>%</p>
+                        <p><span data-property="humidity">...</span>%</p>
                     </div>
                     <div>
-                        <img src="temp/tempWeatherIcon.png" alt="UV Index" />
+                        <img src="assets/icons/uv_index.svg" alt="UV Index" />
                         <p>UV Index</p>
-                        <p data-property="uvIndex">3.5</p>
+                        <p data-property="uvIndex">...</p>
                     </div>
                     <div>
-                        <img src="temp/tempWeatherIcon.png" alt="Pressure" />
+                        <img src="assets/icons/pressure.svg" alt="Pressure" />
                         <p>Pressure</p>
-                        <p><span data-property="pressure">1032</span> hPa</p>
+                        <p><span data-property="pressure">...</span> hPa</p>
                     </div>
                     <div>
-                        <img src="temp/tempWeatherIcon.png" alt="Wind speed" />
+                        <img src="assets/icons/wind_speed.svg" alt="Wind speed" />
                         <p>Wind speed</p>
-                        <p><span data-property="windSpeed">3</span> m/s</p>
+                        <p><span data-property="windSpeed">...</span> m/s</p>
                     </div>
                     <div>
-                        <img src="temp/tempWeatherIcon.png" alt="Visibility" />
+                        <img src="assets/icons/visibility.svg" alt="Visibility" />
                         <p>Visibility</p>
-                        <p><span data-property="visibility">1200</span> m</p>
+                        <p><span data-property="visibility">...</span> m</p>
                     </div>
                     <div>
-                        <img src="temp/tempWeatherIcon.png" alt="Dewpoint" />
+                        <img src="assets/icons/dewpoint.svg" alt="Dewpoint" />
                         <p>Dewpoint</p>
-                        <p><span data-property="dewpoint">80</span>°</p>
+                        <p><span data-property="dewpoint">...</span>°</p>
                     </div>
                 </section>
                 <section id="hourly-weather-card">
@@ -85,15 +86,15 @@
                     <h2>Time of day</h2>
                     <canvas id="day-night-canvas"></canvas>
                     <p>
-                        <span data-property="sunrise" id="sunrise">06:20</span>
-                        <span data-property="sunset" id="sunset">22:00</span>
+                        <span data-property="sunrise" id="sunrise">...</span>
+                        <span data-property="sunset" id="sunset">...</span>
                     </p>
                 </section>
                 <section id="air-quality-card">
                     <div id="aqi-wrapper">
                         <h2>Air quality</h2>
                         <div id="aqi-meter-wrapper">
-                            <p id="aqi-indicator">Good (10)</p>
+                            <p id="aqi-indicator">...</p>
                             <progress id="aqi-meter" value="70" max="100"></progress>
                         </div>
                     </div>
@@ -101,10 +102,10 @@
                     <div id="pollen-wrapper">
                         <h2>Pollen</h2>
                         <ul>
-                            <li>Grass: <span data-property="grassPollen">Low</span></li>
-                            <li>Birch: <span data-property="birchPollen">High</span></li>
-                            <li>Ragweed: <span data-property="ragweedPollen">Low</span></li>
-                            <li>Alder: <span data-property="alderPollen">None</span></li>
+                            <li>Grass: <span data-property="grassPollen">...</span></li>
+                            <li>Birch: <span data-property="birchPollen">...</span></li>
+                            <li>Ragweed: <span data-property="ragweedPollen">...</span></li>
+                            <li>Alder: <span data-property="alderPollen">...</span></li>
                         </ul>
                     </div>
                 </section>

@@ -25,9 +25,7 @@ export function getWeatherDescription(weatherCode, isDay) {
     else return weatherCodeMap[weatherCode].night.description;
 }
 
-export function getWeatherIcon(weatherCode, isDay) {
-    console.log(isDay);
-    
+export function getWeatherIcon(weatherCode, isDay) {    
     if (isDay) return weatherCodeMap[weatherCode].day.icon;
     else return weatherCodeMap[weatherCode].night.icon;
 }
