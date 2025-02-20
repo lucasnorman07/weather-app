@@ -11,7 +11,7 @@
 
         .hourly-weather-item {
             text-align: center;
-            padding: 0 1rem;
+            padding: 0 $default-spacing;
             border-right: $default-divider-width solid white;
 
             &:first-child {

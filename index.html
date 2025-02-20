@@ -5,12 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Weather app</title>
         <script defer src="lib/jquery.js"></script>
-        <script type="module" src="js/controller.js"></script>
+        <script type="module" src="js/main.js"></script>
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <header>
-            <div id="location-tab"></div>
+        <header id="header">
+            <button id="location-tab">...</button>
+            <dialog id="location-pop-up">
+                <input id="location-search-input" type="text" placeholder="Search locations" />
+                <button id="current-location-button">Use current location</button>
+                <div>
+                    <button id="latest-locations" class="active">Latest</button>
+                    <button id="favorite-locations">Favorites</button>
+                </div>
+                <ul id="locations-list">
+                </ul>
+            </dialog>
         </header>
         <main>
             <div id="weather-grid">
@@ -20,7 +30,7 @@
                         <p data-property="time">...</p>
                     </div>
                     <div id="current-weather-and-temperature">
-                        <!-- The source gets updated by JS, this is a placeholder -->
+                        <!-- The image source gets updated by JS, this is a placeholder -->
                         <img
                             data-property="weatherIcon"
                             src="assets/icons/weather/cloudy.svg"

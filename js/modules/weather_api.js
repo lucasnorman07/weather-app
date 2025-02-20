@@ -1,4 +1,4 @@
-import { getWeatherDescription, getWeatherIcon } from "./modules/weather_codes.js";
+import { getWeatherDescription, getWeatherIcon } from "./weather_codes.js";
 
 // TODO, update urls to only include the necessary data ;)
 const weatherDataURL = (latitude, longitude, timezone) =>
@@ -105,9 +105,10 @@ function parseHourlyWeather(data) {
         const currentDate = new Date(time);
         const dayIndex = Math.floor(i / 24);
         // Calculate if the current hour has day light or not
-        const isDay = currentDate > new Date(data.daily.sunrise[dayIndex]) && currentDate < new Date(data.daily.sunset[dayIndex]);
-        console.log({currentDate, sunrise: new Date(data.daily.sunrise[1]), sunset: new Date(data.daily.sunset[1]), dayIndex});
-        
+        const isDay =
+            currentDate > new Date(data.daily.sunrise[dayIndex]) &&
+            currentDate < new Date(data.daily.sunset[dayIndex]);
+
         return {
             temp: Math.round(data.hourly.temperature_2m[i]),
             weatherText: getWeatherDescription(weatherCode, isDay),
@@ -139,22 +140,7 @@ function parseDailyWeather(data) {
 
     return days;
 }
-export default async function () {
-    const position = new Promise((resolve, reject) => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                resolve({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                });
-            });
-            return;
-        }
-        reject("Location is not turned on");
-    });
-
-    const {latitude, longitude} = await position;
-
+export default async function (latitude, longitude) {
     const weatherData = await getWeatherData(
         latitude,
         longitude,

@@ -1,4 +1,4 @@
-import getWeatherCodeMap from "./weather_code_data.js";
+import getWeatherCodeMap from "./weather_code_map.js";
 
 let weatherCodeMap = getWeatherCodeMap();
 

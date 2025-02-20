@@ -12,13 +12,13 @@
     p {
         #sunrise {
             position: absolute;
-            bottom: $default-spacing;
-            left: $default-spacing + 2.5rem;
+            bottom: $large-spacing;
+            left: $large-spacing + 2.5rem;
         }
         #sunset {
             position: absolute;
-            bottom: $default-spacing;
-            right: $default-spacing + 2.5rem;
+            bottom: $large-spacing;
+            right: $large-spacing + 2.5rem;
         }
     }
 }

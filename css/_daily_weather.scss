@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: $default-spacing * 0.5;
+    gap: $large-spacing * 0.5;
 
     #daily-weather-items {
         display: flex;
@@ -18,7 +18,7 @@
             display: grid;
             justify-items: center;
             grid-template-columns: 1fr 0.6fr 0.5fr 0.5fr;
-            padding: $default-spacing * 0.55 0;
+            padding: $large-spacing * 0.55 0;
             border-bottom: $default-divider-width solid white;
 
             &:last-child {
@@ -46,7 +46,7 @@
 
             .daily-weather-item-min-temperature {
                 justify-self: right;
-                
+
                 &::before {
                     content: "L:";
                 }

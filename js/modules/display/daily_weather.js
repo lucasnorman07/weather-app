@@ -1,6 +1,8 @@
-import createElement from "./html_generator.js";
+import createElement from "../html_generator.js";
 
 export default function (days) {
+    $("#daily-weather-items").empty();
+
     days.forEach(day => {
         const weatherItem = createElement("div", {
             classList: "daily-weather-item",

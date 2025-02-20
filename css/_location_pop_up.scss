@@ -1,0 +1,150 @@
+@mixin card-styling($backgroundColor: $card-color) {
+    background-color: $backgroundColor;
+    padding: $large-spacing * 0.8 $large-spacing;
+    border-radius: $default-border-radius;
+}
+
+#location-pop-up {
+    @include card-styling(rgb(217, 217, 217));
+    border: none;
+    margin-top: $default-spacing;
+    top: 100%;
+    grid-column: 1 / 2;
+    width: 100%;
+    z-index: 1;
+    height: 40rem;
+    max-height: 90dvh;
+    display: none;
+    transition: opacity 1s;
+    gap: $default-spacing;
+    flex-direction: column;
+
+    &[open] {
+        display: flex;
+        animation: fade-in 0.3s;
+    }
+
+    &[closing] {
+        display: flex;
+        animation: fade-out 0.3s;
+    }
+
+    button,
+    input {
+        color: black;
+        border: none;
+        font-size: $default-font-size;
+    }
+
+    button {
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    input {
+        padding: $small-spacing;
+        border-radius: $small-border-radius;
+    }
+
+    div {
+        @extend .horizontal-space-between;
+        border-bottom: $default-divider-width solid black;
+        padding-bottom: $small-spacing;
+
+        button {
+            background-color: transparent;
+            padding: 0;
+
+            &:hover,
+            &.active {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    #current-location-button {
+        padding: 0.5rem;
+        border-radius: $small-border-radius;
+        text-align: left;
+
+        &:hover {
+            background-color: #d0d0d7;
+        }
+    }
+
+    ul {
+        flex-shrink: 1;
+        overflow: auto;
+
+        li {
+            position: relative;
+            width: 100%;
+            gap: $default-divider-width;
+
+            &:not(:last-child) {
+                margin-bottom: $small-spacing;
+            }
+
+            button {
+                border-radius: $small-border-radius;
+
+                &:hover {
+                    background-color: #d0d0d7;
+                }
+
+                &.change-location-button {
+                    text-align: left;
+                    padding: 0.5rem;
+                    width: 100%;
+
+                    span {
+                        display: block;
+                        margin-top: 0.2rem;
+                        font-size: $small-font-size;
+                        opacity: 0.8;
+                    }
+                }
+
+                &.star-location-button,
+                &.unstar-location-button {
+                    position: absolute;
+                    right: 0.25rem;
+                    top: 0.25rem;
+                    width: 1.8rem;
+                    height: 1.8rem;
+                    background: {
+                        size: 80%;
+                        position: 50% 45%;
+                        repeat: no-repeat;
+                    }
+                }
+
+                &.star-location-button {
+                    background-image: url(../assets/icons/star.svg);
+                }
+
+                &.unstar-location-button {
+                    background-image: url(../assets/icons/unstar.svg);
+                }
+            }
+        }
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

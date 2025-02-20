@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 @font-face {
@@ -12,11 +13,19 @@ body {
     font-family: Inter, Arial, Helvetica, sans-serif;
     background: linear-gradient(#4472e8, #264082);
     height: 100dvh;
+    color: white;
+    padding: 3rem;
+    box-sizing: content-box;
 }
 
 .vertical-space-between {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+}
+
+.horizontal-space-between {
+    display: flex;
     justify-content: space-between;
 }
 
@@ -34,13 +43,18 @@ body {
     }
 }
 
-$default-spacing: 1.5rem;
-$small-spacing: $default-spacing * 0.5;
+$large-spacing: 1.3rem;
+$default-spacing: 1rem;
+$small-spacing: $large-spacing * 0.5;
 $default-border-radius: 1rem;
+$small-border-radius: 0.5rem;
 $default-divider-width: 0.05rem;
 
 $heading-font-size: 1.2rem;
 $default-font-size: 1.1rem;
+$small-font-size: 0.9rem;
+
+$card-color: rgba(217, 217, 217, 0.2);
 
 @import "current_weather";
 @import "weather_conditions";
@@ -49,29 +63,45 @@ $default-font-size: 1.1rem;
 @import "day_night";
 @import "air_quality";
 @import "precipitation";
+@import "location_pop_up";
+
+@mixin top-level-element {
+    margin: auto;
+    width: 70rem;
+    margin-top: $default-spacing;
+}
+
+#header {
+    @include top-level-element();
+    position: relative;
+    display: grid;
+    gap: $default-spacing;
+    grid-template-columns: 1fr 1.2fr 0.2fr 1fr;
+    grid-template-rows: 1fr;
+
+    & > button {
+        @include card-styling();
+        cursor: pointer;
+        text-align: left;
+        grid-column: 1 / 2;
+        font-size: $default-font-size;
+        color: white;
+        border: none;
+    }
+}
 
 #weather-grid {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    translate: -50% -50%;
-    color: white;
-    width: 70rem;
-    /*85*/
+    @include top-level-element();
     height: 40rem;
-    /*50*/
-    margin-bottom: 0;
     display: grid;
-    gap: 1rem;
+    gap: $default-spacing;
     grid-template-rows: 1fr 1fr 1.5fr 1fr;
     /* TODO, maybe change from 1.5fr to 1.4fr?*/
     grid-template-columns: 1fr 1.2fr 0.2fr 1fr;
 }
 
 #weather-grid > section {
-    background-color: rgba(217, 217, 217, 0.2);
-    padding: $default-spacing * 0.8 $default-spacing;
-    border-radius: $default-border-radius;
+    @include card-styling();
 
     h2 {
         font-size: $heading-font-size;
