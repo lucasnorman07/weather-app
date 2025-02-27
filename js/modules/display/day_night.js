@@ -4,12 +4,14 @@ const ctx = canvas.get(0).getContext("2d");
 let width, height;
 const resize = () => {
     [width, height] = [canvas.width(), canvas.height()];
+    
     canvas.prop("width", width);
     canvas.prop("height", height);
 };
 resize();
 
 // In case the canvas is resized, then update the canvas width and height
+// TODO, not getting called when screen width is getting smaller!
 canvas.on("resize", resize);
 
 const LINE_WIDTH = 3;
