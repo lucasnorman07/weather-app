@@ -12,9 +12,10 @@
 body {
   font-family: Inter, Arial, Helvetica, sans-serif;
   background: linear-gradient(#4472e8, #264082);
-  height: 100dvh;
+  max-height: 100%;
+  overflow: auto;
   color: white;
-  padding: 3rem;
+  padding: 3rem 0;
   box-sizing: content-box;
 }
 
@@ -80,21 +81,24 @@ body {
 }
 
 #weather-conditions-card {
-  -moz-column-count: 3;
-       column-count: 3;
   white-space: nowrap;
 }
-#weather-conditions-card div {
+#weather-conditions-card > div {
+  -moz-column-count: 3;
+       column-count: 3;
+  height: 90%;
+}
+#weather-conditions-card > div div {
   margin-left: 5%;
   align-content: center;
   height: 50%;
 }
-#weather-conditions-card div img {
+#weather-conditions-card > div div img {
   width: 1.5rem;
   margin-right: 0.3rem;
   float: left;
 }
-#weather-conditions-card div p {
+#weather-conditions-card > div div p {
   white-space: nowrap;
 }
 
@@ -410,6 +414,8 @@ body {
   background-color: rgba(217, 217, 217, 0.2);
   padding: 1.04rem 1.3rem;
   border-radius: 1rem;
+  min-width: 0;
+  min-height: 0;
 }
 #weather-grid > section h2 {
   font-size: 1.2rem;
@@ -444,4 +450,45 @@ body {
 
 #precipitation-card {
   grid-area: 4/3/span 2/span 2;
+}
+
+@media (max-width: 1200px) {
+  #header {
+    grid-template-columns: repeat(2, 1fr);
+    width: 650px;
+  }
+  #weather-grid {
+    width: 650px;
+    height: 1100px;
+    grid-template-rows: 1.4fr 1.3fr 0.7fr 1fr 0.7fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #current-weather-card {
+    grid-area: 1/1/span 1/span 1;
+  }
+  #weather-conditions-card {
+    grid-area: 2/1/span 2/span 1;
+  }
+  #weather-conditions-card > div {
+    -moz-column-count: 2 !important;
+         column-count: 2 !important;
+  }
+  #weather-conditions-card > div div {
+    height: 33%;
+  }
+  #hourly-weather-card {
+    grid-area: 4/1/span 1/span 2;
+  }
+  #daily-weather-card {
+    grid-area: 1/2/span 2/span 1;
+  }
+  #day-night-card {
+    grid-area: 5/1/span 1/span 1;
+  }
+  #air-quality-card {
+    grid-area: 5/2/span 1/span 1;
+  }
+  #precipitation-card {
+    grid-area: 3/2/span 1/span 1;
+  }
 }/*# sourceMappingURL=style.css.map */

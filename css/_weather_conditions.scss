@@ -1,20 +1,24 @@
 #weather-conditions-card {
-    column-count: 3;
     white-space: nowrap;
 
-    div {
-        margin-left: 5%;
-        align-content: center;
-        height: 50%;
+    & > div {
+        column-count: 3;
+        height: 90%;
 
-        img {
-            width: 1.5rem;
-            margin-right: 0.3rem;
-            float: left;
-        }
+        div {
+            margin-left: 5%;
+            align-content: center;
+            height: 50%;
 
-        p {
-            white-space: nowrap;
+            img {
+                width: 1.5rem;
+                margin-right: 0.3rem;
+                float: left;
+            }
+
+            p {
+                white-space: nowrap;
+            }
         }
     }
 }
