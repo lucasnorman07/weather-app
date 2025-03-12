@@ -1,11 +1,13 @@
 import { getWeatherDescription, getWeatherIcon } from "./weather_codes.js";
 
 // TODO, update urls to only include the necessary data ;)
+// These functions are used to construct URLs to get the weather and air quality data on a certain location
 const weatherDataURL = (latitude, longitude, timezone) =>
     `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,surface_pressure,wind_speed_10m&hourly=precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,dew_point_2m,temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,surface_pressure,visibility,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&wind_speed_unit=ms&timezone=${timezone}&past_days=2&forecast_days=16`;
 const airQualityDataURL = (latitude, longitude, timezone) =>
     `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${latitude}&longitude=${longitude}&current=european_aqi,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&hourly=pm10,pm2_5,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&timezone=${timezone}`;
 
+// These functions are used to retrive weather and air quality data from the URLs
 async function getWeatherData(latitude, longitude, timezone) {
     const respone = await fetch(weatherDataURL(latitude, longitude, timezone));
     return await respone.json();
@@ -14,6 +16,8 @@ async function getAirQualityData(latitude, longitude, timezone) {
     const respone = await fetch(airQualityDataURL(latitude, longitude, timezone));
     return await respone.json();
 }
+
+// This function parses the current weather data from the API and converts it to a more usable format
 function parseCurrentWeather(data) {
     const {
         temperature_2m: currentTemp,
@@ -29,11 +33,13 @@ function parseCurrentWeather(data) {
         currentTemp: Math.round(currentTemp),
         apparentTemp: Math.round(apparentTemp),
         weatherText: getWeatherDescription(weatherCode, data.current.is_day),
-        weatherIcon: getWeatherIcon(weatherCode, data.current.isDay),
+        weatherIcon: getWeatherIcon(weatherCode, data.current.is_day),
         maxTemp: Math.round(maxTemp),
         minTemp: Math.round(minTemp)
     };
 }
+
+// This function parses the current weather conditions from the API and converts it to a more usable format
 function parseWeatherConditions(data) {
     const {
         wind_speed_10m: windSpeed,
@@ -57,6 +63,8 @@ function parseWeatherConditions(data) {
         dewpoint: Math.round(dewpoint)
     };
 }
+
+// This function parses the sunrise/sunset data from the API and converts it to a more usable format
 function parseDayNightData(data) {
     const { is_day: isDay } = data.current;
     const {
@@ -69,6 +77,8 @@ function parseDayNightData(data) {
         sunset: new Date(sunset).getHours() + ":" + new Date(sunset).getMinutes()
     };
 }
+
+// This function parses the precipiation probabilities for each hour to a more usable format
 function parsePrecipitation(data) {
     // Loop over all of the hours and construct an object with the precipitation probability and time
     return data.hourly.time.map((time, i) => {
@@ -78,6 +88,8 @@ function parsePrecipitation(data) {
         };
     });
 }
+
+// This function parser the air quality and pollen data from the API to a more usable format
 function parseAirQuality(data) {
     const {
         alder_pollen: alderPollen,
@@ -98,25 +110,36 @@ function parseAirQuality(data) {
         ragweedPollen
     };
 }
-function parseHourlyWeather(data) {
-    // Loop over all of the hours and construct a data object for that hour
-    return data.hourly.time.map((time, i) => {
-        const weatherCode = data.hourly.weather_code[i];
-        const currentDate = new Date(time);
-        const dayIndex = Math.floor(i / 24);
-        // Calculate if the current hour has day light or not
-        const isDay =
-            currentDate > new Date(data.daily.sunrise[dayIndex]) &&
-            currentDate < new Date(data.daily.sunset[dayIndex]);
 
-        return {
-            temp: Math.round(data.hourly.temperature_2m[i]),
-            weatherText: getWeatherDescription(weatherCode, isDay),
-            weatherIcon: getWeatherIcon(weatherCode, isDay),
-            time: `${currentDate.getHours()}:00`
-        };
-    });
+// This function parses the hourly weather data from the API to a more usable format
+function parseHourlyWeather(data) {
+    return (
+        data.hourly.time
+            // Filter away any hours that have passed already
+            .filter((time, _i) => new Date() < new Date(time))
+            // Only take the next 24 hours (one day)
+            .slice(0, 24)
+            // Loop over the 24 hours and construct a data object for that hour
+            .map((time, i) => {
+                const weatherCode = data.hourly.weather_code[i];
+                const date = new Date(time);
+                const dayIndex = Math.floor(i / 24);
+                // Calculate if the current hour has day light or not
+                const isDay =
+                    date > new Date(data.daily.sunrise[dayIndex]) &&
+                    date < new Date(data.daily.sunset[dayIndex]);
+
+                return {
+                    temp: Math.round(data.hourly.temperature_2m[i]),
+                    weatherText: getWeatherDescription(weatherCode, isDay),
+                    weatherIcon: getWeatherIcon(weatherCode, isDay),
+                    time: `${date.getHours()}:00`
+                };
+            })
+    );
 }
+
+// This function parses the daily weather data from the API to a more usable format
 function parseDailyWeather(data) {
     // Loop over all of the days and construct a data object for that day
     const days = data.daily.time.map((time, i) => {
@@ -127,6 +150,7 @@ function parseDailyWeather(data) {
             // Pass true to get day icons
             weatherText: getWeatherDescription(weatherCode, true),
             weatherIcon: getWeatherIcon(weatherCode, true),
+            // Choose a correct name for the day
             name: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][
                 new Date(time).getDay()
             ],
@@ -134,12 +158,14 @@ function parseDailyWeather(data) {
         };
     });
 
-    // Update the previous day and the current day
+    // Set the previous day and the current day names
     days[0].name = "Yesterday";
     days[1].name = "Today";
 
     return days;
 }
+
+// Export a function to retrive all of the weather data as a single object using the functions above
 export default async function (latitude, longitude) {
     const weatherData = await getWeatherData(
         latitude,
@@ -151,6 +177,7 @@ export default async function (latitude, longitude) {
         longitude,
         Intl.DateTimeFormat().resolvedOptions().timeZone
     );
+
     return {
         latitude,
         longitude,

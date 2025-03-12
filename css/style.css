@@ -498,14 +498,14 @@ body {
   }
   #header {
     grid-template-columns: 1fr;
-    width: 95%;
+    width: 100%;
     max-width: 400px;
   }
   #weather-grid {
-    width: 95%;
+    width: 100%;
     max-width: 400px;
     height: 1800px;
-    grid-template-rows: 0.6fr 0.8fr 0.4fr 1fr 0.3fr 0.3fr 0.3fr;
+    grid-template-rows: 0.6fr 0.4fr 1fr 0.8fr 0.3fr 0.3fr 0.3fr;
     grid-template-columns: 1fr;
   }
   #current-weather-card {
@@ -513,7 +513,7 @@ body {
     background-color: transparent !important;
   }
   #weather-conditions-card {
-    grid-area: 2/1/span 1/span 1;
+    grid-area: 4/1/span 1/span 1;
   }
   #weather-conditions-card > div {
     -moz-column-count: 2 !important;
@@ -523,10 +523,10 @@ body {
     height: 33%;
   }
   #hourly-weather-card {
-    grid-area: 3/1/span 1/span 1;
+    grid-area: 2/1/span 1/span 1;
   }
   #daily-weather-card {
-    grid-area: 4/1/span 1/span 1;
+    grid-area: 3/1/span 1/span 1;
   }
   #day-night-card {
     grid-area: 5/1/span 1/span 1;

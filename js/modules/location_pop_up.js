@@ -104,7 +104,7 @@ function closeLocationsPopUp() {
     $popUp.on("animationend", () => $popUp.removeAttr("closing"));
 }
 
-// Clear the location button
+// Clear the location buttons
 function clearLocationItems() {
     $locationsList.empty();
 }

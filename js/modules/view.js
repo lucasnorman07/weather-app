@@ -5,9 +5,11 @@ import displayDayNightData from "./display/day_night.js";
 import displayHourlyWeather from "./display/hourly_weather.js";
 import displayPrecipitation from "./display/precipitation.js";
 
+// Export a function to display the weather data for a certain location
 export default async function (location) {
     const weatherData = await getWeatherData(location.latitude, location.longitude);
 
+    // Some sections have helper functions to display the data
     displayDayNightData(
         (timeToSeconds(weatherData.time) - timeToSeconds(weatherData.sunrise)) /
             (timeToSeconds(weatherData.sunset) - timeToSeconds(weatherData.sunrise))
@@ -17,16 +19,20 @@ export default async function (location) {
     displayHourlyWeather(weatherData.hourly);
     displayDailyWeather(weatherData.daily);
 
+    // Go over any elements with [data-property] and set their values to the corresponding values in the weather data
     $("[data-property]").each(function () {
         setPropertyValue(this, weatherData[this.dataset.property]);
     });
 
+    // Go over any elements with [data-array-property]
     $("[data-array-property]").each(function () {
         // Store the parent element so it can be referenced in the inner loop (because it overrides "this")
         const wrapper = this;
 
         // Track the count of each property so they can be indexed correctly
         const propertiesCount = new Map();
+
+        // Go over any elements with [data-array-element-property] and set their values to the corresponding values in the weather data
         $(
             `[data-array-property="${wrapper.dataset.arrayProperty}"] [data-array-element-property]`
         ).each(function () {
@@ -42,11 +48,13 @@ export default async function (location) {
     });
 }
 
+// Helper function to convert a time string to hours and minutes
 function timeToSeconds(time) {
     const [hours, minutes] = time.split(":");
     return (+hours * 60 + +minutes) * 60;
 }
 
+// Helper function to set the value of an element (so it works for both icons and text)
 function setPropertyValue(element, value) {
     if (element.tagName === "IMG") {
         element.src = value;
@@ -55,6 +63,7 @@ function setPropertyValue(element, value) {
     }
 }
 
+// Add event handlers to elements with the horizontal and vertical scroll attributes
 $("[data-horizontal-scroll], [data-vertical-scroll]").each(function () {
     const horizontalScroll = this.dataset.horizontalScroll != null;
 

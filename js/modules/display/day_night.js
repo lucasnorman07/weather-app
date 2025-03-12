@@ -4,7 +4,6 @@ const ctx = canvas.get(0).getContext("2d");
 let width, height;
 const resize = () => {
     [width, height] = [canvas.width(), canvas.height()];
-    
     canvas.prop("width", width);
     canvas.prop("height", height);
 };
@@ -28,6 +27,7 @@ function getCirclePosition(position) {
     };
 }
 
+// Export a function to render the day-night graph
 export default function render(sunPosition) {
     ctx.clearRect(0, 0, width, height);
     ctx.lineWidth = LINE_WIDTH;

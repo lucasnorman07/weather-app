@@ -6,17 +6,24 @@ const ctx = canvas.get(0).getContext("2d");
 let precipitationData;
 
 const VERTICAL_LABELS = ["100%", "50%", "0%"];
-const SPACING = 2.8;
-const DOT_RADIUS = 2;
+// Horizontal spacing between data points
+const SPACING = 3;
+const DOT_RADIUS = 3;
+// How big the spacing is from the graph the edges
 const EDGE_PADDING = 6;
-const LINE_WIDTH = 0.5;
+const LINE_WIDTH = 0.8;
+const LINE_COLOR = "white";
+const DOT_COLOR = "white";
 const TEXT_COLOR = "white";
 const OPAQUE_TEXT_COLOR = "rgba(255, 255, 255, 0.5)";
 const FONT = "1rem Arial";
 const TEXT_BASELINE = "bottom";
 const VERTICAL_LABELS_FONT = "0.95rem Arial";
 
+// Shift is the size of the vertical labels, fullGraphHeight is the height of the graph and text and graphHeight is only the height of the data graph
 let textWidth, textHeight, width, height, shift, graphHeight, fullGraphHeight;
+
+// A helper function to set certain properties
 function updatePrecipitationData(data) {
     precipitationData = data;
 
@@ -27,7 +34,7 @@ function updatePrecipitationData(data) {
     textHeight = ctx.measureText(data[0].time).fontBoundingBoxAscent;
     shift = ctx.measureText(VERTICAL_LABELS[0]).actualBoundingBoxRight;
 
-    
+    // Set the width and height of the canvas and also the fullGraphHeight and graphHeight variables
     [width, height] = [textWidth * data.length * SPACING + shift, canvas.height()];
     canvas.prop("width", width);
     canvas.prop("height", height);
@@ -42,14 +49,16 @@ function updatePrecipitationData(data) {
     ctx.textBaseline = TEXT_BASELINE;
 }
 
+// A function to render the data lines and dots
 function plotData() {
     ctx.save();
     ctx.translate(shift + EDGE_PADDING, EDGE_PADDING);
 
     // Plot the data graph
+    ctx.strokeStyle = LINE_COLOR;
     ctx.beginPath();
     precipitationData.forEach((item, i) => {
-        const positionX = textWidth * i * SPACING + textWidth / 2;
+        const positionX = textWidth * i * SPACING;
         if (i === 0) {
             // Subtract from the graph height so it's not flipped
             ctx.moveTo(positionX, graphHeight - item.precipitationProbability * graphHeight);
@@ -61,24 +70,30 @@ function plotData() {
     ctx.stroke();
     
     // Plot the data points
+    ctx.fillStyle = DOT_COLOR;
     precipitationData.forEach((item, i) => {
         ctx.beginPath();
-        const positionX = textWidth * i * SPACING + textWidth / 2;
+        const positionX = textWidth * i * SPACING;
         // Subtract from the graph height so it's not flipped
         ctx.arc(positionX, graphHeight - item.precipitationProbability * graphHeight, DOT_RADIUS, 0, Math.PI * 2);
         ctx.fill();
     });
 
-    // Restore the translate with shift and the dot radius
-    ctx.restore();
-
     // Render the text along the x-axis (times)
+    ctx.textAlign = "center";
+    ctx.font = FONT;
+    ctx.fillStyle = TEXT_COLOR;
+    ctx.textBaseline = TEXT_BASELINE;
     precipitationData.forEach((item, i) => {
-        const positionX = textWidth * i * SPACING + shift;
-        ctx.fillText(item.time, positionX, height);
+        const positionX = textWidth * i * SPACING;
+        ctx.fillText(item.time, positionX, height - EDGE_PADDING);
     });
+
+    // Restore the translate with shift and the edge padding
+    ctx.restore();
 }
 
+// The main function to render the entire graph
 function render() {
     ctx.clearRect(0, 0, width, height);
 
@@ -109,6 +124,7 @@ function render() {
     ctx.restore();
 
     // Render the lines for the x-axis and y-axis
+    ctx.strokeStyle = LINE_COLOR;
     ctx.beginPath();
     ctx.moveTo(shift + LINE_WIDTH, 0);
     ctx.lineTo(shift + LINE_WIDTH, fullGraphHeight);
@@ -121,6 +137,7 @@ function render() {
 
 canvasWrapper.on("scroll", render);
 
+// Export a function that displays precipication data
 export default function (data) {    
     updatePrecipitationData(data);
     render();

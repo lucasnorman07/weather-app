@@ -51,6 +51,8 @@ $default-border-radius: 1rem;
 $small-border-radius: 0.5rem;
 $default-divider-width: 0.05rem;
 
+$main-element-width: 70rem;
+
 $heading-font-size: 1.2rem;
 $default-font-size: 1.1rem;
 $small-font-size: 0.9rem;
@@ -66,14 +68,10 @@ $card-color: rgba(217, 217, 217, 0.2);
 @import "precipitation";
 @import "location_pop_up";
 
-@mixin top-level-element {
-    margin: auto;
-    width: 70rem;
-    margin-top: $default-spacing;
-}
-
 #header {
-    @include top-level-element();
+    margin: auto;
+    width: $main-element-width;
+    margin-top: $default-spacing;
     position: relative;
     display: grid;
     gap: $default-spacing;
@@ -92,7 +90,9 @@ $card-color: rgba(217, 217, 217, 0.2);
 }
 
 #weather-grid {
-    @include top-level-element();
+    margin: auto;
+    width: $main-element-width;
+    margin-top: $default-spacing;
     height: 40rem;
     display: grid;
     gap: $default-spacing;
@@ -200,15 +200,15 @@ $card-color: rgba(217, 217, 217, 0.2);
 
     #header {
         grid-template-columns: 1fr;
-        width: 95%;
+        width: 100%;
         max-width: 400px;
     }
 
     #weather-grid {
-        width: 95%;
+        width: 100%;
         max-width: 400px;
         height: 1800px;
-        grid-template-rows: 0.6fr 0.8fr 0.4fr 1fr 0.3fr 0.3fr 0.3fr;
+        grid-template-rows: 0.6fr 0.4fr 1fr 0.8fr 0.3fr 0.3fr 0.3fr;
         grid-template-columns: 1fr;
     }
 
@@ -218,7 +218,7 @@ $card-color: rgba(217, 217, 217, 0.2);
     }
 
     #weather-conditions-card {
-        grid-area: 2 / 1 / span 1 / span 1;
+        grid-area: 4 / 1 / span 1 / span 1;
 
         & > div {
             column-count: 2 !important;
@@ -230,11 +230,11 @@ $card-color: rgba(217, 217, 217, 0.2);
     }
 
     #hourly-weather-card {
-        grid-area: 3 / 1 / span 1 / span 1;
+        grid-area: 2 / 1 / span 1 / span 1;
     }
 
     #daily-weather-card {
-        grid-area: 4 / 1 / span 1 / span 1;
+        grid-area: 3 / 1 / span 1 / span 1;
     }
 
     #day-night-card {

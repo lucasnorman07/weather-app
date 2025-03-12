@@ -1,3 +1,4 @@
+// A helper function to create HTML elements from different properties
 export default function (name, properties = {}) {
     const element = document.createElement(name);
     for (const property in properties) {

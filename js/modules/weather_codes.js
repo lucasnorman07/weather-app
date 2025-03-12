@@ -1,5 +1,6 @@
 import getWeatherCodeMap from "./weather_code_map.js";
 
+// Get the actual weather code map
 let weatherCodeMap = getWeatherCodeMap();
 
 // Replace any string intervals with entries for each number in the interval
@@ -20,11 +21,13 @@ for (const weatherCode in weatherCodeMap) {
     }
 }
 
+// Export a function to get the weather description from a weather code
 export function getWeatherDescription(weatherCode, isDay) {
     if (isDay) return weatherCodeMap[weatherCode].day.description;
     else return weatherCodeMap[weatherCode].night.description;
 }
 
+// Export a function to get the weather icon from a weather code
 export function getWeatherIcon(weatherCode, isDay) {    
     if (isDay) return weatherCodeMap[weatherCode].day.icon;
     else return weatherCodeMap[weatherCode].night.icon;

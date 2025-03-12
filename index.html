@@ -10,7 +10,9 @@
     </head>
     <body>
         <header id="header">
+            <!-- Is the button about the main grid that toggles the location pop up -->
             <button id="location-tab">...</button>
+            <!-- Lets the user change location -->
             <dialog id="location-pop-up">
                 <input id="location-search-input" type="text" placeholder="Search locations" />
                 <button id="current-location-button">Use current location</button>
@@ -22,8 +24,11 @@
                 </ul>
             </dialog>
         </header>
+
         <main>
+            <!-- This is the main grid that contains the sections for all of the weather data -->
             <div id="weather-grid">
+                <!-- This section shows the current weather, temperature and similar data -->
                 <section id="current-weather-card">
                     <div>
                         <h2>Current Weather</h2>
@@ -47,6 +52,7 @@
                         <p>Feels like: <span data-property="apparentTemp">...</span>°</p>
                     </div>
                 </section>
+                <!-- This section shows weather conditions like wind speed, uv index and humidity -->
                 <section id="weather-conditions-card">
                     <h2>Weather Conditions</h2>
                     <div>
@@ -83,26 +89,31 @@
                         </div>
                     </div>
                 </section>
+                <!-- This section shows the weather for each hour -->
                 <section id="hourly-weather-card">
                     <h2>Hourly Weather</h2>
                     <div data-horizontal-scroll id="hourly-weather-items">
                         <!-- Populate this with JS -->
                     </div>
                 </section>
+                <!-- This section shows the weather and absolute temperatures for each day -->
                 <section id="daily-weather-card">
                     <h2>Daily Weather</h2>
                     <div data-vertical-scroll id="daily-weather-items">
                         <!-- Populate this with JS -->
                     </div>
                 </section>
+                <!-- This section shows the suns position and sunrise/sunset -->
                 <section id="day-night-card">
                     <h2>Time of day</h2>
+                    <!-- This canvas is used to show the suns position -->
                     <canvas id="day-night-canvas"></canvas>
                     <p>
                         <span data-property="sunrise" id="sunrise">...</span>
                         <span data-property="sunset" id="sunset">...</span>
                     </p>
                 </section>
+                <!-- This section shows the air quality and pollen levels -->
                 <section id="air-quality-card">
                     <div id="aqi-wrapper">
                         <h2>Air quality</h2>
@@ -122,9 +133,11 @@
                         </ul>
                     </div>
                 </section>
+                <!-- This shows the probabilty of precipitation -->
                 <section id="precipitation-card">
                     <h2>Precipitation</h2>
                     <div data-horizontal-scroll id="precipitation-canvas-wrapper">
+                        <!-- This canvas is used to draw the graph -->
                         <canvas id="precipitation-canvas"></canvas>
                     </div>
                 </section>

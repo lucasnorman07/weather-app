@@ -1,5 +1,6 @@
 import createElement from "../html_generator.js";
 
+// Export a function to generate HTML elements to display weather data for each hour
 export default function (hours) {
     $("#hourly-weather-items").empty();
 

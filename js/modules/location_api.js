@@ -1,3 +1,4 @@
+// Export a function to get a list of locations from a query using the nominatim openstreetmap API
 export async function getSearchLocations(query) {
     if (query === "") return [];
     try {
@@ -21,6 +22,7 @@ export async function getSearchLocations(query) {
     }
 }
 
+// Export a function to get location info for a specific latitude and longitude using the nominatim openstreetmap API
 export async function getLocationInfo(latitude, longitude) {
     const data = await fetch(
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`

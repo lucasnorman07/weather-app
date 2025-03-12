@@ -1,3 +1,4 @@
+// Simply export a map from each weather code to a description and image
 export default function () {
     return {
         0: {

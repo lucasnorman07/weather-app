@@ -8,6 +8,7 @@ const FALLBACK_LOCATION = {
     longitude: "18.0710935"
 };
 
+// Export a function to detect the users current location
 export async function detectCurrentLocation() {
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
@@ -23,6 +24,7 @@ export async function detectCurrentLocation() {
     });
 }
 
+// Export a function to get the currently active location from localStorage
 export async function getActiveLocation() {
     const latestLocations = getLatestLocations();
     // Check if the latest locations from local storage is empty
@@ -43,6 +45,7 @@ export async function getActiveLocation() {
     return latestLocations[0];
 }
 
+// Export a function to set a new location as the active location
 export function storeActiveLocation(location) {
     const latestLocations = getLatestLocations();
     // Add the location to latest locations
@@ -54,14 +57,17 @@ export function storeActiveLocation(location) {
     localStorage.setItem("latestLocations", JSON.stringify(latestLocations));
 }
 
+// Export a function to simply get the latest locations as an array
 export function getLatestLocations() {
     return JSON.parse(localStorage.getItem("latestLocations")) ?? [];
 }
 
+// Export a function to simply get the favorite locations as an array
 export function getFavoriteLocations() {
     return JSON.parse(localStorage.getItem("favoriteLocations")) ?? [];
 }
 
+// Export a function to add a favorite location to local storage
 export function addFavoriteLocation(location) {
     const favoriteLocations = getFavoriteLocations();
     // Do not add the location if it already exists
@@ -71,6 +77,7 @@ export function addFavoriteLocation(location) {
     localStorage.setItem("favoriteLocations", JSON.stringify(favoriteLocations));
 }
 
+// Export a function to remove a favorite location from local storage
 export function removeFavoriteLocation(location) {
     const favoriteLocations = getFavoriteLocations();
     // Find the index of the location
