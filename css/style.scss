@@ -15,7 +15,8 @@
 body {
     font-family: Inter, Arial, Helvetica, sans-serif;
     background: linear-gradient(#4472e8, #264082);
-    max-height: 100%;
+    // Set min height so it can still be larger (when the elements overflow)
+    min-height: 100dvh;
     overflow: auto;
     color: white;
     padding: 3rem 0;
