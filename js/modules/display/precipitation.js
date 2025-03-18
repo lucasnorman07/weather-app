@@ -5,9 +5,11 @@ const ctx = canvas.get(0).getContext("2d");
 // This will be updated when the default export function is called
 let precipitationData;
 
+// Define a scale factor to use to improve the resolution
+const RESOLUTION_UPSCALE = 2;
 const VERTICAL_LABELS = ["100%", "50%", "0%"];
 // Horizontal spacing between data points
-const SPACING = 3;
+const SPACING = 2;
 const DOT_RADIUS = 3;
 // How big the spacing is from the graph the edges
 const EDGE_PADDING = 6;
@@ -33,11 +35,11 @@ function updatePrecipitationData(data) {
     textWidth = ctx.measureText(data[0].time).actualBoundingBoxRight;
     textHeight = ctx.measureText(data[0].time).fontBoundingBoxAscent;
     shift = ctx.measureText(VERTICAL_LABELS[0]).actualBoundingBoxRight;
-
+    
     // Set the width and height of the canvas and also the fullGraphHeight and graphHeight variables
     [width, height] = [textWidth * data.length * SPACING + shift, canvas.height()];
-    canvas.prop("width", width);
-    canvas.prop("height", height);
+    canvas.prop("width", width * RESOLUTION_UPSCALE);
+    canvas.prop("height", height * RESOLUTION_UPSCALE);
     canvas.css("width", width + "px");
     fullGraphHeight = height - textHeight - LINE_WIDTH;
     graphHeight = fullGraphHeight - EDGE_PADDING * 2;
@@ -95,6 +97,9 @@ function plotData() {
 
 // The main function to render the entire graph
 function render() {
+    ctx.save();
+    ctx.scale(RESOLUTION_UPSCALE, RESOLUTION_UPSCALE);
+
     ctx.clearRect(0, 0, width, height);
 
     plotData();
@@ -131,7 +136,10 @@ function render() {
     ctx.lineTo(shift + width + LINE_WIDTH, fullGraphHeight);
     ctx.stroke();
 
-    // restore the translate
+    // Restore the translate
+    ctx.restore();
+
+    // Restore the scale
     ctx.restore();
 }
 

@@ -1,3 +1,6 @@
+// This has the styling for the location pop-up
+
+// Define a mixin to use for any cards (this is also used in the main SCSS file)
 @mixin card-styling($backgroundColor: $card-color) {
     background-color: $backgroundColor;
     padding: $large-spacing * 0.8 $large-spacing;

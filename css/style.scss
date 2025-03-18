@@ -1,9 +1,12 @@
+// This is the main SCSS file responsible for linking the other SCSS files styling the weather main grid
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+// Set a custom font
 @font-face {
     font-family: Inter;
     src: url(../assets/fonts/InterVariableFont.ttf);
@@ -19,12 +22,12 @@ body {
     box-sizing: content-box;
 }
 
+// Define two helper classes
 .vertical-space-between {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-
 .horizontal-space-between {
     display: flex;
     justify-content: space-between;
@@ -44,6 +47,7 @@ body {
     }
 }
 
+// Define a bunch of constants
 $large-spacing: 1.3rem;
 $default-spacing: 1rem;
 $small-spacing: $large-spacing * 0.5;
@@ -52,6 +56,8 @@ $small-border-radius: 0.5rem;
 $default-divider-width: 0.05rem;
 
 $main-element-width: 70rem;
+$main-element-medium-width: 40rem;
+$main-element-small-width: 25rem;
 
 $heading-font-size: 1.2rem;
 $default-font-size: 1.1rem;
@@ -59,6 +65,7 @@ $small-font-size: 0.9rem;
 
 $card-color: rgba(217, 217, 217, 0.2);
 
+// Link/import the other SCSS modules
 @import "current_weather";
 @import "weather_conditions";
 @import "hourly_weather";
@@ -79,6 +86,7 @@ $card-color: rgba(217, 217, 217, 0.2);
     grid-template-rows: 1fr;
 
     & > button {
+        // Comes from the location pop-up module
         @include card-styling();
         cursor: pointer;
         text-align: left;
@@ -89,6 +97,13 @@ $card-color: rgba(217, 217, 217, 0.2);
     }
 }
 
+#footer {
+    margin: auto;
+    width: $main-element-width;
+    margin-top: $large-spacing;
+}
+
+// Style the main weather grid
 #weather-grid {
     margin: auto;
     width: $main-element-width;
@@ -102,6 +117,7 @@ $card-color: rgba(217, 217, 217, 0.2);
 }
 
 #weather-grid > section {
+    // Comes from the location pop-up module
     @include card-styling();
     min-width: 0;
     min-height: 0;
@@ -143,14 +159,19 @@ $card-color: rgba(217, 217, 217, 0.2);
     grid-area: 4 / 3 / span 2 / span 2;
 }
 
-@media (max-width: 1200px) {
+// Change the styling for medium screen size
+@media (max-width: 1170px) {
     #header {
         grid-template-columns: repeat(2, 1fr);
-        width: 650px;
+        width: $main-element-medium-width;
+    }
+
+    #footer {
+        width: $main-element-medium-width;
     }
 
     #weather-grid {
-        width: 650px;
+        width: $main-element-medium-width;
         height: 1100px;
         grid-template-rows: 1.4fr 1.3fr 0.7fr 1fr 0.7fr;
         grid-template-columns: repeat(2, 1fr);
@@ -193,6 +214,7 @@ $card-color: rgba(217, 217, 217, 0.2);
     }
 }
 
+// Change the styling for mobile screen size
 @media (max-width: 700px) {
     body {
         padding: $default-spacing;
@@ -201,12 +223,17 @@ $card-color: rgba(217, 217, 217, 0.2);
     #header {
         grid-template-columns: 1fr;
         width: 100%;
-        max-width: 400px;
+        max-width: $main-element-small-width;
+    }
+
+    #footer {
+        width: 100%;
+        max-width: $main-element-small-width;
     }
 
     #weather-grid {
         width: 100%;
-        max-width: 400px;
+        max-width: $main-element-small-width;
         height: 1800px;
         grid-template-rows: 0.6fr 0.4fr 1fr 0.8fr 0.3fr 0.3fr 0.3fr;
         grid-template-columns: 1fr;

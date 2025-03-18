@@ -192,6 +192,7 @@ body {
 #day-night-card #day-night-canvas {
   height: 0;
   flex-grow: 1;
+  width: 100%;
 }
 #day-night-card p #sunrise {
   position: absolute;
@@ -398,6 +399,12 @@ body {
   border: none;
 }
 
+#footer {
+  margin: auto;
+  width: 70rem;
+  margin-top: 1.3rem;
+}
+
 #weather-grid {
   margin: auto;
   width: 70rem;
@@ -452,13 +459,16 @@ body {
   grid-area: 4/3/span 2/span 2;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1170px) {
   #header {
     grid-template-columns: repeat(2, 1fr);
-    width: 650px;
+    width: 40rem;
+  }
+  #footer {
+    width: 40rem;
   }
   #weather-grid {
-    width: 650px;
+    width: 40rem;
     height: 1100px;
     grid-template-rows: 1.4fr 1.3fr 0.7fr 1fr 0.7fr;
     grid-template-columns: repeat(2, 1fr);
@@ -499,11 +509,15 @@ body {
   #header {
     grid-template-columns: 1fr;
     width: 100%;
-    max-width: 400px;
+    max-width: 25rem;
+  }
+  #footer {
+    width: 100%;
+    max-width: 25rem;
   }
   #weather-grid {
     width: 100%;
-    max-width: 400px;
+    max-width: 25rem;
     height: 1800px;
     grid-template-rows: 0.6fr 0.4fr 1fr 0.8fr 0.3fr 0.3fr 0.3fr;
     grid-template-columns: 1fr;

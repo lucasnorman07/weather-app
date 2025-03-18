@@ -1,3 +1,5 @@
+// This has the styling for the current weather section
+
 #current-weather-card {
     @extend .vertical-space-between;
 
@@ -29,6 +31,7 @@
                     font-weight: normal;
                 }
             }
+
             #current-weather-text {
                 font-size: $heading-font-size;
             }

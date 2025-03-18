@@ -1,3 +1,5 @@
+// This has the styling for the time of day section
+
 #day-night-card {
     position: relative;
     display: flex;
@@ -7,6 +9,7 @@
         // Take up any available space
         height: 0;
         flex-grow: 1;
+        width: 100%;
     }
 
     p {

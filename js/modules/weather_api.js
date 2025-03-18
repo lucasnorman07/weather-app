@@ -68,25 +68,33 @@ function parseWeatherConditions(data) {
 function parseDayNightData(data) {
     const { is_day: isDay } = data.current;
     const {
-        sunrise: [sunrise],
+        sunrise: [sunrise, nextSunrise],
         sunset: [sunset]
     } = data.daily;
     return {
         isDay,
         sunrise: new Date(sunrise).getHours() + ":" + new Date(sunrise).getMinutes(),
-        sunset: new Date(sunset).getHours() + ":" + new Date(sunset).getMinutes()
+        sunset: new Date(sunset).getHours() + ":" + new Date(sunset).getMinutes(),
     };
 }
 
 // This function parses the precipiation probabilities for each hour to a more usable format
 function parsePrecipitation(data) {
     // Loop over all of the hours and construct an object with the precipitation probability and time
-    return data.hourly.time.map((time, i) => {
-        return {
-            precipitationProbability: data.hourly.precipitation_probability[i] / 100,
-            time: new Date(time).getHours()
-        };
-    });
+    return (
+        data.hourly.time
+            // Filter away any hours that have passed already
+            .filter((time, _i) => new Date() < new Date(time))
+            // Only take the next 24 hours (one day)
+            .slice(0, 24)
+            // Loop over the 24 hours and construct a data object for that hour
+            .map((time, i) => {
+                return {
+                    precipitationProbability: data.hourly.precipitation_probability[i] / 100,
+                    time: new Date(time).getHours()
+                };
+            })
+    );
 }
 
 // This function parser the air quality and pollen data from the API to a more usable format
