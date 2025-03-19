@@ -399,6 +399,13 @@ body {
   border: none;
 }
 
+#location-tab {
+  background-image: url(../assets/icons/location.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
 #footer {
   margin: auto;
   width: 70rem;

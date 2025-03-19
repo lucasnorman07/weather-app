@@ -2,7 +2,7 @@ const canvas = $("#day-night-canvas");
 const ctx = canvas.get(0).getContext("2d");
 
 // Define a scale factor to use to improve the resolution
-const RESOLUTION_UPSCALE = 2;
+const RESOLUTION_UPSCALE = 3;
 const LINE_WIDTH = 3;
 const INSET = { x: 13, y: 12 };
 const SUN_RADIUS = 12;

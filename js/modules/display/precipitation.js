@@ -6,7 +6,7 @@ const ctx = canvas.get(0).getContext("2d");
 let precipitationData;
 
 // Define a scale factor to use to improve the resolution
-const RESOLUTION_UPSCALE = 2;
+const RESOLUTION_UPSCALE = 3;
 const VERTICAL_LABELS = ["100%", "50%", "0%"];
 // Horizontal spacing between data points
 const SPACING = 2;

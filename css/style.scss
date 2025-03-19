@@ -98,6 +98,13 @@ $card-color: rgba(217, 217, 217, 0.2);
     }
 }
 
+#location-tab {
+    background-image: url(../assets/icons/location.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
 #footer {
     margin: auto;
     width: $main-element-width;
