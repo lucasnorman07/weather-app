@@ -1,4 +1,4 @@
-import { getLocationInfo } from "./location_api.js";
+import { detectCurrentLocation } from "./location_api.js";
 
 // Choose a fallback location in case the current location could not be detected
 const FALLBACK_LOCATION = {
@@ -7,22 +7,6 @@ const FALLBACK_LOCATION = {
     latitude: "59.3251172",
     longitude: "18.0710935"
 };
-
-// Export a function to detect the users current location
-export async function detectCurrentLocation() {
-    return new Promise((resolve, reject) => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                // Get the location info for the current position and call resolve on the result
-                getLocationInfo(position.coords.latitude, position.coords.longitude).then(
-                    location => resolve(location)
-                );
-            }, reject);
-            return;
-        }
-        reject("Location not available");
-    });
-}
 
 // Export a function to get the currently active location from localStorage
 export async function getActiveLocation() {
@@ -48,6 +32,13 @@ export async function getActiveLocation() {
 // Export a function to set a new location as the active location
 export function storeActiveLocation(location) {
     const latestLocations = getLatestLocations();
+    // If the location is already the latests location then don't add it
+    if (
+        location.name === latestLocations[0].name &&
+        location.fullName === latestLocations[0].fullName
+    )
+        return;
+
     // Add the location to latest locations
     latestLocations.unshift(location);
     // If there are more than 10 latest locations, then remove the last one

@@ -35,7 +35,7 @@
                 <section id="current-weather-card">
                     <div>
                         <h2>Current Weather</h2>
-                        <p data-property="time">...</p>
+                        <p data-property="timeString">...</p>
                     </div>
                     <div id="current-weather-and-temperature">
                         <!-- The image source gets updated by JS, this is a placeholder -->
@@ -107,12 +107,12 @@
                 </section>
                 <!-- This section shows the suns position and sunrise/sunset -->
                 <section id="day-night-card">
-                    <h2>Time of day</h2>
+                    <h2 id="day-night-card-title">Time of day</h2>
                     <!-- This canvas is used to show the suns position -->
                     <canvas id="day-night-canvas"></canvas>
                     <p>
-                        <span data-property="sunrise" id="sunrise">...</span>
-                        <span data-property="sunset" id="sunset">...</span>
+                        <span id="sunrise">...</span>
+                        <span id="sunset">...</span>
                     </p>
                 </section>
                 <!-- This section shows the air quality and pollen levels -->
@@ -145,7 +145,16 @@
                 </section>
             </div>
         </main>
-        <footer id="footer">© 2025 Lucas Norman. All rights reserved.</footer>
+        <footer id="footer">
+            <p>
+                © 2025 Lucas Norman. All rights reserved.
+                <a target="blank" href="https://github.com/lucasnorman07/weather-app">GitHub</a>.
+                <a target="blank" href="https://open-meteo.com">Weather API</a>.
+                <a target="blank" href="https://nominatim.openstreetmap.org/ui/search.html"
+                    >Location API</a
+                >.
+            </p>
+        </footer>
     </body>
 
     <!-- Link the service worker script -->

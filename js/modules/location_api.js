@@ -29,7 +29,6 @@ export async function getLocationInfo(latitude, longitude) {
     );
     const place = await data.json();
     // The reverse api does not give a name field, so go through the options and pick the most accurate one available
-    // TODO, better order?
     const name =
         place.address.city ||
         place.address.town ||
@@ -43,4 +42,20 @@ export async function getLocationInfo(latitude, longitude) {
         "Unknown Location";
 
     return { name, fullName: place.display_name, latitude: place.lat, longitude: place.lon };
+}
+
+// Export a function to detect the users current location
+export async function detectCurrentLocation() {
+    return new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                // Get the location info for the current position and call resolve on the result
+                getLocationInfo(position.coords.latitude, position.coords.longitude).then(
+                    location => resolve(location)
+                );
+            }, reject);
+            return;
+        }
+        reject("Location not available");
+    });
 }

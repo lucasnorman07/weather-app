@@ -1,19 +1,16 @@
-import getWeatherData from "./weather_api.js"
 import displayAQI from "./display/aqi.js";
 import displayDailyWeather from "./display/daily_weather.js";
 import displayDayNightData from "./display/day_night.js";
 import displayHourlyWeather from "./display/hourly_weather.js";
 import displayPrecipitation from "./display/precipitation.js";
+import getWeatherData from "./weather_api.js";
 
 // Export a function to display the weather data for a certain location
 export default async function (location) {
     const weatherData = await getWeatherData(location.latitude, location.longitude);
 
     // Some sections have helper functions to display the data
-    displayDayNightData(
-        (timeToSeconds(weatherData.time) - timeToSeconds(weatherData.sunrise)) /
-            (timeToSeconds(weatherData.sunset) - timeToSeconds(weatherData.sunrise))
-    );
+    displayDayNightData(weatherData);
     displayAQI(weatherData.AQI);
     displayPrecipitation(weatherData.precipitation);
     displayHourlyWeather(weatherData.hourly);
@@ -46,12 +43,6 @@ export default async function (location) {
             propertiesCount.set(this.dataset.arrayElementProperty, index + 1);
         });
     });
-}
-
-// Helper function to convert a time string to hours and minutes
-function timeToSeconds(time) {
-    const [hours, minutes] = time.split(":");
-    return (+hours * 60 + +minutes) * 60;
 }
 
 // Helper function to set the value of an element (so it works for both icons and text)

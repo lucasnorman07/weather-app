@@ -19,6 +19,10 @@ body {
   box-sizing: content-box;
 }
 
+a {
+  color: lightgray;
+}
+
 .vertical-space-between, #precipitation-card, #air-quality-card #pollen-wrapper, #hourly-weather-card, #current-weather-card {
   display: flex;
   flex-direction: column;
@@ -419,8 +423,7 @@ body {
   height: 40rem;
   display: grid;
   gap: 1rem;
-  grid-template-rows: 1fr 1fr 1.5fr 1fr;
-  /* TODO, maybe change from 1.5fr to 1.4fr?*/
+  grid-template-rows: 1fr 1fr 1.4fr 1fr;
   grid-template-columns: 1fr 1.2fr 0.2fr 1fr;
 }
 

@@ -1,8 +1,7 @@
 import createHTMLElement from "./html_generator.js";
-import { getSearchLocations } from "./location_api.js";
+import { detectCurrentLocation, getSearchLocations } from "./location_api.js";
 import {
     addFavoriteLocation,
-    detectCurrentLocation,
     getFavoriteLocations,
     getLatestLocations,
     removeFavoriteLocation,

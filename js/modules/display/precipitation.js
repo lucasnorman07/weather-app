@@ -1,6 +1,6 @@
-const canvasWrapper = $("#precipitation-canvas-wrapper");
-const canvas = $("#precipitation-canvas");
-const ctx = canvas.get(0).getContext("2d");
+const $canvasWrapper = $("#precipitation-canvas-wrapper");
+const $canvas = $("#precipitation-canvas");
+const ctx = $canvas.get(0).getContext("2d");
 
 // This will be updated when the default export function is called
 let precipitationData;
@@ -9,7 +9,7 @@ let precipitationData;
 const RESOLUTION_UPSCALE = 3;
 const VERTICAL_LABELS = ["100%", "50%", "0%"];
 // Horizontal spacing between data points
-const SPACING = 2;
+const SPACING = 4;
 const DOT_RADIUS = 3;
 // How big the spacing is from the graph the edges
 const EDGE_PADDING = 6;
@@ -37,10 +37,10 @@ function updatePrecipitationData(data) {
     shift = ctx.measureText(VERTICAL_LABELS[0]).actualBoundingBoxRight;
     
     // Set the width and height of the canvas and also the fullGraphHeight and graphHeight variables
-    [width, height] = [textWidth * data.length * SPACING + shift, canvas.height()];
-    canvas.prop("width", width * RESOLUTION_UPSCALE);
-    canvas.prop("height", height * RESOLUTION_UPSCALE);
-    canvas.css("width", width + "px");
+    [width, height] = [(textWidth / 2) * data.length * SPACING + shift, $canvas.height()];
+    $canvas.prop("width", width * RESOLUTION_UPSCALE);
+    $canvas.prop("height", height * RESOLUTION_UPSCALE);
+    $canvas.css("width", width + "px");
     fullGraphHeight = height - textHeight - LINE_WIDTH;
     graphHeight = fullGraphHeight - EDGE_PADDING * 2;
 
@@ -60,7 +60,7 @@ function plotData() {
     ctx.strokeStyle = LINE_COLOR;
     ctx.beginPath();
     precipitationData.forEach((item, i) => {
-        const positionX = textWidth * i * SPACING;
+        const positionX = (textWidth / 2) * i * SPACING;
         if (i === 0) {
             // Subtract from the graph height so it's not flipped
             ctx.moveTo(positionX, graphHeight - item.precipitationProbability * graphHeight);
@@ -75,7 +75,7 @@ function plotData() {
     ctx.fillStyle = DOT_COLOR;
     precipitationData.forEach((item, i) => {
         ctx.beginPath();
-        const positionX = textWidth * i * SPACING;
+        const positionX = (textWidth / 2) * i * SPACING;
         // Subtract from the graph height so it's not flipped
         ctx.arc(positionX, graphHeight - item.precipitationProbability * graphHeight, DOT_RADIUS, 0, Math.PI * 2);
         ctx.fill();
@@ -87,7 +87,7 @@ function plotData() {
     ctx.fillStyle = TEXT_COLOR;
     ctx.textBaseline = TEXT_BASELINE;
     precipitationData.forEach((item, i) => {
-        const positionX = textWidth * i * SPACING;
+        const positionX = (textWidth / 2) * i * SPACING;
         ctx.fillText(item.time, positionX, height - EDGE_PADDING);
     });
 
@@ -105,10 +105,10 @@ function render() {
     plotData();
 
     ctx.save();
-    ctx.translate(canvasWrapper.prop("scrollLeft"), 0);
+    ctx.translate($canvasWrapper.prop("scrollLeft"), 0);
 
     // Clear the space underneath the text for the y-axis
-    if (canvasWrapper.prop("scrollLeft") > 0) {
+    if ($canvasWrapper.prop("scrollLeft") > 0) {
         // Used to fix any glitches
         const glitchOffset = 1;
         ctx.clearRect(-glitchOffset, 0, shift + glitchOffset * 2, height);
@@ -143,7 +143,7 @@ function render() {
     ctx.restore();
 }
 
-canvasWrapper.on("scroll", render);
+$canvasWrapper.on("scroll", render);
 
 // Export a function that displays precipication data
 export default function (data) {    
