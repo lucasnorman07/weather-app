@@ -15,10 +15,10 @@
     <body>
         <header id="header">
             <!-- Is the button about the main grid that toggles the location pop up -->
-            <button id="location-tab">...</button>
+            <button id="location-tab" aria-label="Button to open the location pop-up">...</button>
             <!-- Lets the user change location -->
             <dialog id="location-pop-up">
-                <input id="location-search-input" type="text" placeholder="Search locations" />
+                <input id="location-search-input" type="text" placeholder="Search locations" aria-label="Input box to search for locations" />
                 <button id="current-location-button">Use current location</button>
                 <div>
                     <button id="latest-locations" class="active">Latest</button>
@@ -121,7 +121,7 @@
                         <h2>Air quality</h2>
                         <div id="aqi-meter-wrapper">
                             <p id="aqi-indicator">...</p>
-                            <progress id="aqi-meter" value="70" max="100"></progress>
+                            <progress id="aqi-meter" value="70" max="100" aria-label="Air Quality Index out of 100"></progress>
                         </div>
                     </div>
                     <div id="air-quality-divider"></div>
