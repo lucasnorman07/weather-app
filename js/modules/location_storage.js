@@ -34,6 +34,7 @@ export function storeActiveLocation(location) {
     const latestLocations = getLatestLocations();
     // If the location is already the latests location then don't add it
     if (
+        latestLocations.length &&
         location.name === latestLocations[0].name &&
         location.fullName === latestLocations[0].fullName
     )
