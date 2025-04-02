@@ -11,7 +11,7 @@
 }
 body {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  background: linear-gradient(#4472e8, #264082);
+  background: linear-gradient(#3e67cf, #264082);
   min-height: 100dvh;
   overflow: auto;
   color: white;
@@ -392,7 +392,7 @@ a {
   grid-template-rows: 1fr;
 }
 #header > button {
-  background-color: rgba(217, 217, 217, 0.2);
+  background-color: rgba(175, 175, 175, 0.2);
   padding: 1.04rem 1.3rem;
   border-radius: 1rem;
   cursor: pointer;
@@ -428,7 +428,7 @@ a {
 }
 
 #weather-grid > section {
-  background-color: rgba(217, 217, 217, 0.2);
+  background-color: rgba(175, 175, 175, 0.2);
   padding: 1.04rem 1.3rem;
   border-radius: 1rem;
   min-width: 0;
@@ -480,7 +480,7 @@ a {
   #weather-grid {
     width: 40rem;
     height: 1100px;
-    grid-template-rows: 1.4fr 1.3fr 0.7fr 1fr 0.7fr;
+    grid-template-rows: 1.4fr 1.3fr 0.7fr 0.8fr 0.7fr;
     grid-template-columns: repeat(2, 1fr);
   }
   #current-weather-card {
@@ -494,6 +494,7 @@ a {
          column-count: 2 !important;
   }
   #weather-conditions-card > div div {
+    margin-left: 0;
     height: 33%;
   }
   #hourly-weather-card {
@@ -544,6 +545,7 @@ a {
          column-count: 2 !important;
   }
   #weather-conditions-card > div div {
+    margin-left: 5%;
     height: 33%;
   }
   #hourly-weather-card {

@@ -197,14 +197,15 @@ function parseDailyWeather(data) {
             // Pass true to get day icons
             weatherText: getWeatherDescription(weatherCode, true),
             weatherIcon: getWeatherIcon(weatherCode, true),
-            // Choose a correct name for the day
-            name: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][
+            // Choose a correct name for the day (Sunday is 0)
+            name: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][
                 new Date(time).getDay()
             ],
             time
         };
     });
-
+    console.log(days);
+    
     // Set the previous day and the current day names
     days[0].name = "Yesterday";
     days[1].name = "Today";

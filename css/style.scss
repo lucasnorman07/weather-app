@@ -14,7 +14,7 @@
 
 body {
     font-family: Inter, Arial, Helvetica, sans-serif;
-    background: linear-gradient(#4472e8, #264082);
+    background: linear-gradient(#3e67cf, #264082);
     // Set min height so it can still be larger (when the elements overflow)
     min-height: 100dvh;
     overflow: auto;
@@ -68,7 +68,7 @@ $heading-font-size: 1.2rem;
 $default-font-size: 1.1rem;
 $small-font-size: 0.9rem;
 
-$card-color: rgba(217, 217, 217, 0.2);
+$card-color: rgba(175, 175, 175, 0.2);
 
 // Link/import the other SCSS modules
 @import "current_weather";
@@ -184,7 +184,7 @@ $card-color: rgba(217, 217, 217, 0.2);
     #weather-grid {
         width: $main-element-medium-width;
         height: 1100px;
-        grid-template-rows: 1.4fr 1.3fr 0.7fr 1fr 0.7fr;
+        grid-template-rows: 1.4fr 1.3fr 0.7fr 0.8fr 0.7fr;
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -199,6 +199,7 @@ $card-color: rgba(217, 217, 217, 0.2);
             column-count: 2 !important;
 
             div {
+                margin-left: 0;
                 height: 33%;
             }
         }
@@ -262,6 +263,7 @@ $card-color: rgba(217, 217, 217, 0.2);
             column-count: 2 !important;
 
             div {
+                margin-left: 5%;
                 height: 33%;
             }
         }
