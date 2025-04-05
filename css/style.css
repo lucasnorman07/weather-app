@@ -16,11 +16,14 @@ body {
   overflow: auto;
   color: white;
   padding: 3rem 0;
-  box-sizing: content-box;
 }
 
 a {
   color: lightgray;
+}
+
+noscript {
+  text-align: center;
 }
 
 .vertical-space-between, #precipitation-card, #air-quality-card #pollen-wrapper, #hourly-weather-card, #current-weather-card {

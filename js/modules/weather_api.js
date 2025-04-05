@@ -204,7 +204,6 @@ function parseDailyWeather(data) {
             time
         };
     });
-    console.log(days);
     
     // Set the previous day and the current day names
     days[0].name = "Yesterday";

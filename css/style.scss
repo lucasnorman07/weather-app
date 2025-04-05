@@ -20,11 +20,15 @@ body {
     overflow: auto;
     color: white;
     padding: 3rem 0;
-    box-sizing: content-box;
 }
 
 a {
     color: lightgray;
+}
+
+// Just center the text in any noscript elements
+noscript {
+    text-align: center;
 }
 
 // Define two helper classes
