@@ -1,7 +1,7 @@
 {
     "name": "Yet Another Weather App",
     "short_name": "Weather App",
-    "background_color": "#4472e8",
+    "background_color": "#3e67cf",
     "description": "Yet another weather app, made for fun!",
     "icons": [
         {
