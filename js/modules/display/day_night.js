@@ -95,7 +95,7 @@ export default function render(dayNightData) {
     ctx.lineWidth = LINE_WIDTH;
     // Change the color if it's night respektive day
     ctx.strokeStyle = isDay ? "rgb(255, 217, 0)" : "lightgray";
-    ctx.fillStyle = isDay ? "orange" : "white";
+    ctx.fillStyle = isDay ? "rgb(255, 217, 0)" : "lightgray";
 
     // Draw the arc
     ctx.beginPath();
@@ -108,7 +108,18 @@ export default function render(dayNightData) {
     ctx.arc(
         INSET.x + ((position.x + 1) / 2) * ELLIPSE_WIDTH,
         INSET.y + (position.y + 1) * ELLIPSE_HEIGHT,
-        SUN_RADIUS,
+        SUN_RADIUS * 1.1,
+        0,
+        Math.PI * 2
+    );
+    ctx.fill();
+    ctx.beginPath();
+    // Change the color if it's night respektive day
+    ctx.fillStyle = isDay ? "orange" : "white";
+    ctx.arc(
+        INSET.x + ((position.x + 1) / 2) * ELLIPSE_WIDTH,
+        INSET.y + (position.y + 1) * ELLIPSE_HEIGHT,
+        SUN_RADIUS * 0.8,
         0,
         Math.PI * 2
     );
