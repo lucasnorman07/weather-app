@@ -2,9 +2,9 @@ import { getWeatherDescription, getWeatherIcon } from "./weather_codes.js";
 
 // These functions are used to construct URLs to get the weather and air quality data on a certain location
 const weatherDataURL = (latitude, longitude) =>
-    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,surface_pressure,wind_speed_10m&hourly=precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,dew_point_2m,temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,surface_pressure,visibility,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&wind_speed_unit=ms&timezone=auto&past_days=1&forecast_days=16`;
+    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,surface_pressure,wind_speed_10m&hourly=precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,dew_point_2m,temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,surface_pressure,visibility,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset&wind_speed_unit=ms&timezone=auto&past_days=1&forecast_days=16`;
 const airQualityDataURL = (latitude, longitude) =>
-    `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${latitude}&longitude=${longitude}&current=european_aqi,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&hourly=pm10,pm2_5,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&timezone=auto`;
+    `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${latitude}&longitude=${longitude}&current=european_aqi,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen,uv_index&timezone=auto`;
 
 // These functions are used to retrive weather and air quality data from the URLs
 async function getWeatherData(latitude, longitude) {
@@ -58,20 +58,19 @@ function parseCurrentWeather(data) {
 }
 
 // This function parses the current weather conditions from the API and converts it to a more usable format
-function parseWeatherConditions(data) {
+function parseWeatherConditions(weatherData, airQualityData) {
     const {
         wind_speed_10m: windSpeed,
         surface_pressure: pressure,
         relative_humidity_2m: humidity
-    } = data.current;
+    } = weatherData.current;
     const {
         visibility: [visibility],
         dew_point_2m: [dewpoint]
-    } = data.hourly;
-    // Skip the first day in the array (yesterday)
+    } = weatherData.hourly;
     const {
-        uv_index_max: [_yesterday_uv, uvIndex]
-    } = data.daily;
+        uv_index: uvIndex
+    } = airQualityData.current;
     return {
         windSpeed,
         pressure,
@@ -141,13 +140,13 @@ function parseAirQuality(data) {
         ragweed_pollen: ragweedPollen
     } = data.current;
     return {
-        alderPollen,
-        birchPollen,
+        alderPollen: alderPollen ?? "N/A",
+        birchPollen: birchPollen ?? "N/A",
         AQI,
-        grassPollen,
-        mugwortPollen,
-        olivePollen,
-        ragweedPollen
+        grassPollen: grassPollen ?? "N/A",
+        mugwortPollen: mugwortPollen ?? "N/A",
+        olivePollen: olivePollen ?? "N/A",
+        ragweedPollen: ragweedPollen ?? "N/A"
     };
 }
 
@@ -221,7 +220,7 @@ export default async function (latitude, longitude) {
         latitude,
         longitude,
         ...parseCurrentWeather(weatherData),
-        ...parseWeatherConditions(weatherData),
+        ...parseWeatherConditions(weatherData, airQualityData),
         daily: parseDailyWeather(weatherData),
         hourly: parseHourlyWeather(weatherData),
         ...parseDayNightData(weatherData),

@@ -1,4 +1,4 @@
-const CACHE_NAME = "weather-app-cache-v0";
+const CACHE_NAME = "weather-app-cache-v1";
 const FILES_TO_CACHE = [
     // Default route
     ".",

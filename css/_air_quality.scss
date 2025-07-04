@@ -46,6 +46,17 @@
     #pollen-wrapper {
         @extend .vertical-space-between;
 
+        div {
+            h2 {
+                line-height: 0.6;
+            }
+
+            em {
+                font-size: 0.8rem;
+                color: rgba(255, 255, 255, 0.5);
+            }
+        }
+
         ul {
             list-style-type: none;
         }
