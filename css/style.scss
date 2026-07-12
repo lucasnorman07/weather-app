@@ -25,12 +25,17 @@
 
 body {
     font-family: Inter, Arial, Helvetica, sans-serif;
-    background: linear-gradient(#4472E8, #264082);
+    background: linear-gradient(#4472e8, #264082);
     // Set min height so it can still be larger (when the elements overflow)
     min-height: 100dvh;
     overflow: auto;
     color: white;
     padding: 3rem 0;
+}
+
+input,
+button {
+    font-family: Inter, Arial, Helvetica, sans-serif;
 }
 
 a {
