@@ -68,9 +68,7 @@ function parseWeatherConditions(weatherData, airQualityData) {
         visibility: [visibility],
         dew_point_2m: [dewpoint]
     } = weatherData.hourly;
-    const {
-        uv_index: uvIndex
-    } = airQualityData.current;
+    const { uv_index: uvIndex } = airQualityData.current;
     return {
         windSpeed,
         pressure,
@@ -174,36 +172,56 @@ function parseHourlyWeather(data) {
                 const isDay =
                     date >= createDate(data.daily.sunrise[dayIndex], data.utc_offset_seconds) &&
                     date <= createDate(data.daily.sunset[dayIndex], data.utc_offset_seconds);
+                const temperature = data.hourly.temperature_2m[i + filteredHours];
+
+                // handle possible null values
+                if (weatherCode == null || temperature == null) return null;
 
                 return {
-                    temp: Math.round(data.hourly.temperature_2m[i + filteredHours]),
+                    temp: Math.round(temperature),
                     weatherText: getWeatherDescription(weatherCode, isDay),
                     weatherIcon: getWeatherIcon(weatherCode, isDay),
                     time: extractTime(time)
                 };
             })
+            .filter(hour => hour != null)
     );
 }
 
 // This function parses the daily weather data from the API to a more usable format
 function parseDailyWeather(data) {
     // Loop over all of the days and construct a data object for that day
-    const days = data.daily.time.map((time, i) => {
-        const weatherCode = data.daily.weather_code[i];
-        return {
-            minTemp: Math.round(data.daily.temperature_2m_min[i]),
-            maxTemp: Math.round(data.daily.temperature_2m_max[i]),
-            // Pass true to get day icons
-            weatherText: getWeatherDescription(weatherCode, true),
-            weatherIcon: getWeatherIcon(weatherCode, true),
-            // Choose a correct name for the day (Sunday is 0)
-            name: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][
-                new Date(time).getDay()
-            ],
-            time
-        };
-    });
-    
+    const days = data.daily.time
+        .map((time, i) => {
+            const weatherCode = data.daily.weather_code[i];
+            const minTemperature = data.daily.temperature_2m_min[i];
+            const maxTemperature = data.daily.temperature_2m_max[i];
+
+            // handle possible null values in the API's data
+            if (weatherCode == null || minTemperature == null || maxTemperature == null)
+                return null;
+
+            return {
+                minTemp: Math.round(minTemperature),
+                maxTemp: Math.round(maxTemperature),
+                // Pass true to get day icons
+                weatherText: getWeatherDescription(weatherCode, true),
+                weatherIcon: getWeatherIcon(weatherCode, true),
+                // Choose a correct name for the day (Sunday is 0)
+                name: [
+                    "Sunday",
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                ][new Date(time).getDay()],
+                time
+            };
+        })
+        .filter(day => day != null);
+
     // Set the previous day and the current day names
     days[0].name = "Yesterday";
     days[1].name = "Today";
@@ -212,7 +230,7 @@ function parseDailyWeather(data) {
 }
 
 // Export a function to retrive all of the weather data as a single object using the functions above
-export default async function (latitude, longitude) {
+export default async function weatherApi(latitude, longitude) {
     const weatherData = await getWeatherData(latitude, longitude);
     const airQualityData = await getAirQualityData(latitude, longitude);
 

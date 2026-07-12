@@ -1,5 +1,7 @@
 // This has the styling for the hourly weather section
 
+@import "constants";
+
 #hourly-weather-card {
     @extend .vertical-space-between;
 
@@ -26,7 +28,7 @@
             }
 
             .hourly-weather-item-time {
-                opacity: 0.5;
+                opacity: $faded-text-opacity;
             }
 
             img {

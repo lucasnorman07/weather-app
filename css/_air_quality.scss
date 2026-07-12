@@ -1,5 +1,7 @@
 // This has the styling for the air quality section
 
+@import "constants";
+
 #air-quality-card {
     display: flex;
     gap: $small-spacing;
@@ -53,7 +55,7 @@
 
             em {
                 font-size: 0.8rem;
-                color: rgba(255, 255, 255, 0.5);
+                opacity: $faded-text-opacity;
             }
         }
 

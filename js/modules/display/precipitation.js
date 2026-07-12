@@ -17,7 +17,7 @@ const LINE_WIDTH = 0.8;
 const LINE_COLOR = "white";
 const DOT_COLOR = "white";
 const TEXT_COLOR = "white";
-const OPAQUE_TEXT_COLOR = "rgba(255, 255, 255, 0.5)";
+const OPAQUE_TEXT_COLOR = "rgba(255, 255, 255, 0.7)";
 const FONT = "1rem Arial";
 const TEXT_BASELINE = "bottom";
 const VERTICAL_LABELS_FONT = "0.95rem Arial";
@@ -35,7 +35,7 @@ function updatePrecipitationData(data) {
     textWidth = ctx.measureText(data[0].time).actualBoundingBoxRight;
     textHeight = ctx.measureText(data[0].time).fontBoundingBoxAscent;
     shift = ctx.measureText(VERTICAL_LABELS[0]).actualBoundingBoxRight;
-    
+
     // Set the width and height of the canvas and also the fullGraphHeight and graphHeight variables
     [width, height] = [(textWidth / 2) * data.length * SPACING + shift, $canvas.height()];
     $canvas.prop("width", width * RESOLUTION_UPSCALE);
@@ -70,14 +70,20 @@ function plotData() {
         ctx.lineTo(positionX, graphHeight - item.precipitationProbability * graphHeight);
     });
     ctx.stroke();
-    
+
     // Plot the data points
     ctx.fillStyle = DOT_COLOR;
     precipitationData.forEach((item, i) => {
         ctx.beginPath();
         const positionX = (textWidth / 2) * i * SPACING;
         // Subtract from the graph height so it's not flipped
-        ctx.arc(positionX, graphHeight - item.precipitationProbability * graphHeight, DOT_RADIUS, 0, Math.PI * 2);
+        ctx.arc(
+            positionX,
+            graphHeight - item.precipitationProbability * graphHeight,
+            DOT_RADIUS,
+            0,
+            Math.PI * 2
+        );
         ctx.fill();
     });
 
@@ -146,7 +152,7 @@ function render() {
 $canvasWrapper.on("scroll", render);
 
 // Export a function that displays precipication data
-export default function (data) {    
+export default function precipitation(data) {
     updatePrecipitationData(data);
     render();
 }

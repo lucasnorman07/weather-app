@@ -1,5 +1,7 @@
 // This has the styling for the daily weather section
 
+@import "constants";
+
 #daily-weather-card {
     display: flex;
     flex-direction: column;

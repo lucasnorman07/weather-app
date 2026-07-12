@@ -1,7 +1,7 @@
 import createElement from "../html_generator.js";
 
 // Export a function to generate HTML elements to display weather data for each day
-export default function (days) {
+export default function dailyWeather(days) {
     $("#daily-weather-items").empty();
 
     days.forEach(day => {

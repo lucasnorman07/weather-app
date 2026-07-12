@@ -1,58 +1,4 @@
 @charset "UTF-8";
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-@font-face {
-  font-family: Inter;
-  src: url(../assets/fonts/InterVariableFont.ttf);
-}
-body {
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  background: linear-gradient(#3e67cf, #264082);
-  min-height: 100dvh;
-  overflow: auto;
-  color: white;
-  padding: 3rem 0;
-}
-
-a {
-  color: lightgray;
-}
-
-noscript {
-  text-align: center;
-}
-
-.vertical-space-between, #precipitation-card, #air-quality-card #pollen-wrapper, #hourly-weather-card, #current-weather-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.horizontal-space-between, #location-pop-up div {
-  display: flex;
-  justify-content: space-between;
-}
-
-[data-horizontal-scroll],
-[data-vertical-scroll] {
-  cursor: grab;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-[data-horizontal-scroll] img,
-[data-vertical-scroll] img {
-  pointer-events: none;
-}
-[data-horizontal-scroll][data-mouse-down],
-[data-vertical-scroll][data-mouse-down] {
-  cursor: grabbing;
-}
-
 #current-weather-card #current-weather-and-temperature {
   display: flex;
   justify-content: space-between;
@@ -129,7 +75,7 @@ noscript {
   padding-right: 0;
 }
 #hourly-weather-card #hourly-weather-items .hourly-weather-item .hourly-weather-item-time {
-  opacity: 0.5;
+  opacity: 0.7;
 }
 #hourly-weather-card #hourly-weather-items .hourly-weather-item img {
   width: 2.5rem;
@@ -254,7 +200,7 @@ noscript {
 }
 #air-quality-card #pollen-wrapper div em {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.5);
+  opacity: 0.7;
 }
 #air-quality-card #pollen-wrapper ul {
   list-style-type: none;
@@ -391,6 +337,60 @@ noscript {
     opacity: 0;
   }
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url(../assets/fonts/InterVariableFont.ttf);
+}
+body {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background: linear-gradient(#4472E8, #264082);
+  min-height: 100dvh;
+  overflow: auto;
+  color: white;
+  padding: 3rem 0;
+}
+
+a {
+  color: lightgray;
+}
+
+noscript {
+  text-align: center;
+}
+
+.vertical-space-between, #current-weather-card, #hourly-weather-card, #air-quality-card #pollen-wrapper, #precipitation-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.horizontal-space-between, #location-pop-up div {
+  display: flex;
+  justify-content: space-between;
+}
+
+[data-horizontal-scroll],
+[data-vertical-scroll] {
+  cursor: grab;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+[data-horizontal-scroll] img,
+[data-vertical-scroll] img {
+  pointer-events: none;
+}
+[data-horizontal-scroll][data-mouse-down],
+[data-vertical-scroll][data-mouse-down] {
+  cursor: grabbing;
+}
+
 #header {
   margin: auto;
   width: 70rem;
@@ -402,7 +402,7 @@ noscript {
   grid-template-rows: 1fr;
 }
 #header > button {
-  background-color: rgba(175, 175, 175, 0.2);
+  background-color: rgba(190, 190, 190, 0.2);
   padding: 1.04rem 1.3rem;
   border-radius: 1rem;
   cursor: pointer;
@@ -438,7 +438,7 @@ noscript {
 }
 
 #weather-grid > section {
-  background-color: rgba(175, 175, 175, 0.2);
+  background-color: rgba(190, 190, 190, 0.2);
   padding: 1.04rem 1.3rem;
   border-radius: 1rem;
   min-width: 0;

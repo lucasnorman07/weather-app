@@ -1,5 +1,5 @@
 // Simply export a map from each weather code to a description and image
-export default function () {
+export default function weatherCodeMap() {
     return {
         0: {
             day: {

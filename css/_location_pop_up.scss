@@ -1,5 +1,7 @@
 // This has the styling for the location pop-up
 
+@import "constants";
+
 // Define a mixin to use for any cards (this is also used in the main SCSS file)
 @mixin card-styling($backgroundColor: $card-color) {
     background-color: $backgroundColor;

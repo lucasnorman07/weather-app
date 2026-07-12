@@ -1,5 +1,7 @@
 // This has the styling for the precipitation section
 
+@import "constants";
+
 #precipitation-card {
     @extend .vertical-space-between;
 

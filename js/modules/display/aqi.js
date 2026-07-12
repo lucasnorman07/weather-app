@@ -1,5 +1,5 @@
 // Export a function to update the air quality meter and indicator text
-export default function (AQI) {
+export default function aqi(AQI) {
     const aqiIndicator = $("#aqi-indicator");
     const airQualityMeter = $("#aqi-meter");
     let aqiText;

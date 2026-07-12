@@ -6,42 +6,19 @@ import displayPrecipitation from "./display/precipitation.js";
 import getWeatherData from "./weather_api.js";
 
 // Export a function to display the weather data for a certain location
-export default async function (location) {
+export default async function view(location) {
     const weatherData = await getWeatherData(location.latitude, location.longitude);
-
+    
     // Some sections have helper functions to display the data
     displayDayNightData(weatherData);
     displayAQI(weatherData.AQI);
     displayPrecipitation(weatherData.precipitation);
     displayHourlyWeather(weatherData.hourly);
     displayDailyWeather(weatherData.daily);
-
+    
     // Go over any elements with [data-property] and set their values to the corresponding values in the weather data
     $("[data-property]").each(function () {
         setPropertyValue(this, weatherData[this.dataset.property]);
-    });
-
-    // Go over any elements with [data-array-property]
-    $("[data-array-property]").each(function () {
-        // Store the parent element so it can be referenced in the inner loop (because it overrides "this")
-        const wrapper = this;
-
-        // Track the count of each property so they can be indexed correctly
-        const propertiesCount = new Map();
-
-        // Go over any elements with [data-array-element-property] and set their values to the corresponding values in the weather data
-        $(
-            `[data-array-property="${wrapper.dataset.arrayProperty}"] [data-array-element-property]`
-        ).each(function () {
-            const index = propertiesCount.get(this.dataset.arrayElementProperty) || 0;
-
-            setPropertyValue(
-                this,
-                weatherData[wrapper.dataset.arrayProperty][index][this.dataset.arrayElementProperty]
-            );
-
-            propertiesCount.set(this.dataset.arrayElementProperty, index + 1);
-        });
     });
 }
 

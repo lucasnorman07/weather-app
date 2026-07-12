@@ -22,7 +22,7 @@ for (const weatherCode in weatherCodeMap) {
 }
 
 // Export a function to get the weather description from a weather code
-export function getWeatherDescription(weatherCode, isDay) {
+export function getWeatherDescription(weatherCode, isDay) {    
     if (isDay) return weatherCodeMap[weatherCode].day.description;
     else return weatherCodeMap[weatherCode].night.description;
 }
